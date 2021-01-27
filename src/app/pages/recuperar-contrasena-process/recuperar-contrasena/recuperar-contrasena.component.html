@@ -1,0 +1,55 @@
+<div class="container-fluid background-layout-login">
+  <div class="row align-items-center">
+    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
+      <app-layout-login-header></app-layout-login-header>
+      <div class="container-body">
+        <div class="box-content">
+          <div class="recuperar-contrasena-body">
+            <h1 class="text-center">Recuperar contraseña</h1>
+            <p class="text-center">
+              Introduce la dirección de correo electrónico asociada a tu cuenta
+              y te enviaremos un vínculo para restablecer tu contraseña.
+            </p>
+            <form (ngSubmit)="onReset(f)" #f="ngForm">
+              <div class="row">
+                <div class="col">
+                  <label for="email">Correo electrónico</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    email
+                    [formControl]="userEmail"
+                    placeholder="test@stupendo.com"
+                  />
+                  <div
+                    *ngIf="f.submitted && userEmail.hasError('required')"
+                    class="text-danger"
+                  >
+                    <img
+                      src="assets/images/general/error-message-icon.svg"
+                      alt="error"
+                    />Introduce tu correo
+                  </div>
+                  <div *ngIf="errorAuth" class="text-danger">
+                    <img
+                      src="assets/images/general/error-message-icon.svg"
+                      alt="error"
+                    />
+                    No pudimos encontrar ese correo electrónico. Vuelve a
+                    intentarlo.
+                  </div>
+                  <button>Continuar</button>
+                </div>
+              </div>
+            </form>
+            <p class="login-back">
+              <span [routerLink]="['/login']">Volver a inicio de sesión </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <app-layout-login-footer></app-layout-login-footer>
+    </div>
+  </div>
+</div>

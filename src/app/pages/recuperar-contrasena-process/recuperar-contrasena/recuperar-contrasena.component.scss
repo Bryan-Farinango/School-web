@@ -1,0 +1,106 @@
+@import '../../../../../src/assets/styles/styles.scss';
+
+.recuperar-contrasena-body {
+  .row {
+    min-height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  h1 {
+    font-size: 16px;
+    line-height: 19px;
+    color: $blue-stupendo;
+    text-align: center;
+    font-family: 'Myriad Pro Regular';
+    margin-bottom: 30px;
+    @media (min-width: $md) {
+      font-size: 20px;
+      line-height: 21.6px;
+    }
+  }
+  form {
+    input {
+      display: block;
+      width: 100%;
+      border: 1px solid $blue-stupendo;
+      text-decoration: none;
+      border-radius: 17px;
+      color: $blue-stupendo;
+      font-size: 14px;
+      line-height: 16px;
+      padding: 10px 8px;
+      margin-bottom: 5px;
+      @media (min-width: $md) {
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: #999999;
+      }
+    }
+    .text-danger {
+      display: flex;
+      align-items: center;
+      font-size: 10px;
+      line-height: 12px;
+      color: #c1272d;
+      img {
+        padding: 0 3px;
+      }
+      @media (min-width: $md) {
+        font-size: 12px;
+      }
+    }
+
+    label {
+      color: $blue-stupendo;
+      font-size: 12px;
+      display: block;
+      font-family: 'Myriad Pro Regular';
+      padding-bottom: 5px;
+      @media (min-width: $md) {
+        display: inline-flex;
+        font-size: 14px;
+      }
+    }
+
+    button {
+      font-family: 'Myriad Pro Regular';
+      display: block;
+      width: 100%;
+      border-radius: 17px;
+      background-color: $blue-stupendo;
+      font-size: 18px;
+      color: #ffffff;
+      letter-spacing: 1.8px;
+      line-height: 21.6px;
+      margin-bottom: 15px;
+      margin-top: 30px;
+      border: none;
+      padding: 10px 0;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  p {
+    line-height: 16.8px;
+    font-size: 14px;
+    color: $blue-stupendo;
+  }
+
+  .login-back {
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    span {
+      color: $blue-stupendo;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

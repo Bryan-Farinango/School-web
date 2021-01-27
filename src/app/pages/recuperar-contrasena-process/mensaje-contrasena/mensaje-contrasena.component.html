@@ -1,0 +1,33 @@
+<div class="container-fluid background-layout-login">
+  <div class="row align-items-center">
+    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
+      <app-layout-login-header></app-layout-login-header>
+      <div class="chargeImage" *ngIf="chargeImg">
+        <img src="assets/images/general/charge-dec.gif" alt="charge" />
+      </div>
+      <div class="container-body" *ngIf="!chargeImg">
+        <div class="box-content">
+          <div class="recuperar-contrasena-body">
+            <h1 class="text-center">¡Listo!</h1>
+            <p class="text-center first-paragraph">
+              Verifica en tu correo electrónico el link de restablecimiento de
+              contraseña que ha sido enviada.
+            </p>
+            <p class="text-center">
+              ¿No recibiste el correo electrónico?
+              <br />
+              Mira en tu carpeta de correo no deseado o
+              <br />
+              <span (click)="onResendPassword()">vuelve a enviarlo.</span>
+            </p>
+            <div *ngIf="errorResetPassword" class="text-danger">
+              Existió un error al enviar. Por favor, genera un nuevo link para
+              restablecer la contraseña.
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-layout-login-footer></app-layout-login-footer>
+    </div>
+  </div>
+</div>

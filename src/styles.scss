@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Bootstrap styles
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+// Customn Styles
+@import 'assets/styles/styles.scss';
+
+// Global styles
+body {
+  font-family: 'Myriad Pro Light';
+}
+
+* {
+  &:focus {
+    outline: none !important;
+  }
+}

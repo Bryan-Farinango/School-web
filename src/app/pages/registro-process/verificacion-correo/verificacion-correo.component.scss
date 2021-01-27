@@ -1,0 +1,44 @@
+@import '../../../../../src/assets/styles/styles.scss';
+
+.chargeImage {
+  text-align: center;
+  img {
+    max-width: 80px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.verificacion-correo-body {
+  h3 {
+    font-size: 18px;
+    line-height: 19px;
+    color: $blue-stupendo;
+    text-align: center;
+    font-family: 'Myriad Pro Semi Bold';
+    margin-bottom: 15px;
+    margin-top: 50px;
+    @media (min-width: $md) {
+      margin-top: 0;
+      font-size: 24px;
+      line-height: 21.6px;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: $blue-stupendo;
+    margin-bottom: 5px;
+    span {
+      color: $turquoise-stupendo;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  .first-paragraph {
+    font-family: 'Myriad Pro Regular';
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

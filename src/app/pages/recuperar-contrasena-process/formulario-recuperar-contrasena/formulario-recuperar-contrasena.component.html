@@ -1,0 +1,136 @@
+<div class="container-fluid background-layout-login">
+  <div class="row align-items-center">
+    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
+      <app-layout-login-header></app-layout-login-header>
+      <div class="container-body">
+        <div class="box-content">
+          <form
+            class="form-reset-password"
+            [formGroup]="resetPasswordForm"
+            (ngSubmit)="onResetPassword(f)"
+            #f="ngForm"
+          >
+            <div class="reset-password">
+              <h1>Restablecer la contraseña</h1>
+              <div class="row">
+                <div class="col">
+                  <label for="password">Contraseña nueva</label>
+                  <div class="inputWrap">
+                    <input
+                      #password
+                      [type]="showPassword ? 'text' : 'password'"
+                      name="password"
+                      required
+                      minlength="10"
+                      formControlName="password"
+                      placeholder="prueba123"
+                      (ngModelChange)="
+                        checkEqualPassword(repeatPassword.value, password.value)
+                      "
+                    />
+                    <img
+                      (click)="setShowPassword()"
+                      [src]="
+                        showPassword
+                          ? 'assets/images/general/close-eye.svg'
+                          : 'assets/images/general/open-eye.svg'
+                      "
+                      alt="open-eye"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      f.submitted &&
+                      resetPasswordForm.controls['password'].hasError(
+                        'required'
+                      )
+                    "
+                    class="text-danger"
+                  >
+                    <img
+                      src="assets/images/general/error-message-icon.svg"
+                      alt="error"
+                    />Introduce una contraseña
+                  </div>
+                  <div
+                    *ngIf="
+                      f.touched &&
+                      resetPasswordForm.controls['password'].hasError(
+                        'minlength'
+                      )
+                    "
+                    class="text-danger"
+                  >
+                    <img
+                      src="assets/images/general/error-message-icon.svg"
+                      alt="error"
+                    />Tu contraseña no es lo suficientemente segura. La
+                    contraseña debe tener por lo menos 10 caracteres.
+                  </div>
+                  <span *ngIf="!f.submitted">
+                    <ul>
+                      <li>Debe contener al menos 10 caracteres</li>
+                      <li>No puede contener los caracteres <,> ni espacios.</li>
+                    </ul>
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="repeatPassword">Confirma tu contraseña.</label>
+                  <div class="inputWrap">
+                    <input
+                      #repeatPassword
+                      [type]="showRepeatPassword ? 'text' : 'password'"
+                      name="repeatPassword"
+                      required
+                      minlength="10"
+                      formControlName="repeatPassword"
+                      placeholder="prueba123"
+                      (ngModelChange)="
+                        checkEqualPassword(repeatPassword.value, password.value)
+                      "
+                    />
+                    <img
+                      (click)="setShowRepeatPassword()"
+                      [src]="
+                        showRepeatPassword
+                          ? 'assets/images/general/close-eye.svg'
+                          : 'assets/images/general/open-eye.svg'
+                      "
+                      alt="open-eye"
+                    />
+                  </div>
+                  <div *ngIf="errorAuth" class="text-danger">
+                    <img
+                      src="assets/images/general/error-message-icon.svg"
+                      alt="error"
+                    />
+                    El tiempo ha expirado, &nbsp;
+                    <span [routerLink]="['/recuperar-contrasena']">
+                      vuelve a intentarlo
+                    </span>
+                  </div>
+                  <div *ngIf="differentPassword" class="text-danger">
+                    <img
+                      src="assets/images/general/error-message-icon.svg"
+                      alt="error"
+                    />
+                    Las contraseñas no coinciden
+                  </div>
+                </div>
+              </div>
+              <button
+                [disabled]="differentPassword ? true : false"
+                type="submit"
+              >
+                Continuar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <app-layout-login-footer></app-layout-login-footer>
+    </div>
+  </div>
+</div>
