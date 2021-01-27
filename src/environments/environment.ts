@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebaseConfig: {
-    apiKey: 'AIzaSyBllAGJH6b-47bVL8cMd4BtQFUfvEZBHOY',
-    authDomain: 'login-test-stupendo.firebaseapp.com',
-    projectId: 'login-test-stupendo',
-    storageBucket: 'login-test-stupendo.appspot.com',
-    messagingSenderId: '744133604693',
-    appId: '1:744133604693:web:178f7c8a3dfdfce717ebdc',
-    measurementId: 'G-B1PY0D4K3B',
+    apiKey: 'AIzaSyCXb9JLF1HSLFbLD0us47c5gCVMZJ-lC8Q',
+    authDomain: 'school-app-c7c3d.firebaseapp.com',
+    projectId: 'school-app-c7c3d',
+    storageBucket: 'school-app-c7c3d.appspot.com',
+    messagingSenderId: '841139342160',
+    appId: '1:841139342160:web:e8efdbdc70c2ec046efa55',
+    measurementId: 'G-WQCNP4LW92',
   },
 };
 

@@ -3,7 +3,7 @@
     <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
       <app-layout-login-header></app-layout-login-header>
       <div class="container-body">
-        <p class="prueba-text">Prueba gratis durante 15 días</p>
+        <p class="prueba-text">Regístrate y accede a beneficios.</p>
         <div class="box-content">
           <form
             class="form-registro"
@@ -163,7 +163,7 @@
                 </div>
               </div>
               <div class="row align-items-baseline">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="field">
                     <input
                       type="text"
@@ -210,35 +210,6 @@
                       src="assets/images/general/error-message-icon.svg"
                       alt="error"
                     />Mínimo 10 números formato inválido</span
-                  >
-                </div>
-                <div class="col-md-6">
-                  <div class="field">
-                    <select
-                      id="rol"
-                      name="rol"
-                      class="form-control"
-                      required
-                      formControlName="rol"
-                      aria-placeholder="Selecciona tu rol"
-                    >
-                      <option value="" disabled selected>
-                        Selecciona tu rol
-                      </option>
-                      <option value="desarrollador">Desarrollador</option>
-                      <!-- <option disabled value="enterprise">Enterprise</option> -->
-                    </select>
-                  </div>
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['rol'].hasError('required')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce un rol</span
                   >
                 </div>
               </div>
