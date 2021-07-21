@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registro.component.scss'],
 })
 export class RegistroComponent implements OnInit {
+  hide = true;
   public showPassword: boolean;
   public emailExist: boolean;
   registerForm = new FormGroup({

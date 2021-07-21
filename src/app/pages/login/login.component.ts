@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   public showPassword: boolean;
   public chargeImg: boolean;
   public manyRequestError: boolean;
+  public userNotFound: boolean;
+  hide = true;
 
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
     this.errorAuth = false;
     this.showPassword = false;
     this.manyRequestError = false;
+    this.userNotFound = false;
     config.backdrop = 'static';
     config.keyboard = false;
     config.centered = true;
@@ -79,6 +82,10 @@ export class LoginComponent implements OnInit {
         }
         if (user.code == 'auth/too-many-requests') {
           this.manyRequestError = true;
+        }
+        if (user.code == 'auth/user-not-found') {
+          this.userNotFound = true;
+          console.log('ingreso aqui', this.userNotFound);
         }
       }
     } catch (error) {}

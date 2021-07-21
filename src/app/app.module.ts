@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { httpInterceptorProviders } from './interceptors';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireAuthModule,
     HttpClientModule,
     NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: httpInterceptorProviders,
   bootstrap: [AppComponent],

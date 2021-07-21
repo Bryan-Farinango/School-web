@@ -1,55 +1,45 @@
 <div class="container-fluid background-layout-login">
-  <div class="row align-items-center">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
+  <div class="login-bg"></div>
+  <div class="login-form">
+    <div class="col-md-6 offset-md-3">
+      <br />
       <app-layout-login-header></app-layout-login-header>
-      <div class="container-body">
-        <div class="box-content">
-          <div class="recuperar-contrasena-body">
-            <h1 class="text-center">Recuperar contraseña</h1>
-            <p class="text-center">
-              Introduce la dirección de correo electrónico asociada a tu cuenta
-              y te enviaremos un vínculo para restablecer tu contraseña.
-            </p>
-            <form (ngSubmit)="onReset(f)" #f="ngForm">
-              <div class="row">
-                <div class="col">
-                  <label for="email">Correo electrónico</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    email
-                    [formControl]="userEmail"
-                    placeholder="test@stupendo.com"
-                  />
-                  <div
-                    *ngIf="f.submitted && userEmail.hasError('required')"
-                    class="text-danger"
-                  >
-                    <img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce tu correo
-                  </div>
-                  <div *ngIf="errorAuth" class="text-danger">
-                    <img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />
-                    No pudimos encontrar ese correo electrónico. Vuelve a
-                    intentarlo.
-                  </div>
-                  <button>Continuar</button>
-                </div>
-              </div>
-            </form>
-            <p class="login-back">
-              <span [routerLink]="['/login']">Volver a inicio de sesión </span>
+      <br /><br />
+      <div class="container-form">
+        <form class="form-login" (ngSubmit)="onReset(f)" #f="ngForm">
+          <div class="login">
+            <h1>Ingresa tu correo electrónico</h1>
+            <mat-form-field appearance="outline" hideRequiredMarker>
+              <mat-label>Correo</mat-label>
+              <input
+                matInput
+                type="email"
+                name="email"
+                required
+                email
+                [formControl]="userEmail"
+                placeholder="test@test.com"
+              />
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="f.submitted && userEmail.hasError('required')">
+                Introduce tu correo
+              </mat-error>
+            </mat-form-field>
+            <div *ngIf="errorAuth" class="text-danger">
+              Correo electrónico no encontrado <br /><br />
+            </div>
+
+            <button class="login-button" color="primary" mat-flat-button>
+              Enviar
+            </button>
+            <p class="login-back" style="padding-top: 10px">
+              <span [routerLink]="['/login']">Iniciar sesión </span>
             </p>
           </div>
-        </div>
+        </form>
       </div>
-      <app-layout-login-footer></app-layout-login-footer>
     </div>
   </div>
 </div>
+
+<!-- Modal -->

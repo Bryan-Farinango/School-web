@@ -28,6 +28,9 @@ import { ErrorPage500Component } from './error/error-page500/error-page500.compo
 import { ErrorPage404Component } from './error/error-page404/error-page404.component';
 import { RegisterGuardGuard } from '../guards/register/register-guard.guard';
 import { VerificationGuardGuard } from '../guards/verification-account/verification-guard.guard';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -55,6 +58,11 @@ import { VerificationGuardGuard } from '../guards/verification-account/verificat
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
   ],
   providers: [RegisterGuardGuard, VerificationGuardGuard],
 })

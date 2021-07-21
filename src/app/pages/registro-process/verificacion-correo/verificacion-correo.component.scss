@@ -1,4 +1,4 @@
-@import '../../../../../src/assets/styles/styles.scss';
+@import '../../../../assets/styles/styles.scss';
 
 .chargeImage {
   text-align: center;
@@ -9,36 +9,136 @@
   }
 }
 
-.verificacion-correo-body {
-  h3 {
-    font-size: 18px;
-    line-height: 19px;
+.container-fluid {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.login-form {
+  width: 40%;
+  @media (max-width: $md) {
+    width: 100%;
+  }
+}
+
+.form-login {
+  .check-icon {
     color: $blue-stupendo;
+    font-size: 100px;
+    padding-left: 30%;
+    padding-top: 20px;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: black !important;
+  }
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 {
     text-align: center;
-    font-family: 'Myriad Pro Semi Bold';
-    margin-bottom: 15px;
-    margin-top: 50px;
-    @media (min-width: $md) {
-      margin-top: 0;
-      font-size: 24px;
-      line-height: 21.6px;
-    }
+    font-weight: bold;
+  }
+  h2 {
+    text-align: center;
+    margin: 0px;
   }
 
   p {
-    text-align: center;
-    font-size: 14px;
+    text-align: right;
+    color: black;
+  }
+  p:hover {
     color: $blue-stupendo;
-    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .register-redirect:hover {
+    color: black !important;
+    cursor: auto;
+  }
+  .register-redirect {
+    padding-top: 20px;
+    text-align: center;
+    text-decoration: none !important;
+
     span {
-      color: $turquoise-stupendo;
+      color: $blue-stupendo;
       cursor: pointer;
-      text-decoration: underline;
     }
   }
+
+  .login-button {
+    background-color: $blue-stupendo;
+    height: 50px;
+  }
   .first-paragraph {
-    font-family: 'Myriad Pro Regular';
-    padding-top: 20px;
-    padding-bottom: 20px;
+    color: $blue-stupendo;
+    text-decoration: none !important;
+    cursor: text !important;
+  }
+}
+
+.verification-modal {
+  .modal-content {
+    border: none;
+    .modal-header {
+      border-bottom: none;
+      justify-content: center;
+      position: relative;
+      h4 {
+        font-size: 24px;
+        color: $blue-stupendo;
+        font-family: 'Myriad Pro Regular';
+      }
+      button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        background: no-repeat;
+        border: solid 1px $turquoise-stupendo;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          color: $blue-stupendo;
+          font-family: 'Myriad Pro Regular';
+        }
+      }
+    }
+    .modal-body {
+      p {
+        font-size: 14px;
+        color: $blue-stupendo;
+        span {
+          color: $turquoise-stupendo;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+      .sub-title {
+        color: $blue-stupendo;
+        font-family: 'Myriad Pro Regular';
+        font-size: 14px;
+      }
+    }
   }
 }

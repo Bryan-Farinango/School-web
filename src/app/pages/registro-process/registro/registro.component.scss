@@ -1,17 +1,100 @@
-@import '../../../../../src/assets/styles/styles.scss';
+@import '../../../../assets/styles/styles.scss';
 
-.prueba-text {
+.chargeImage {
   text-align: center;
-  color: $blue-stupendo;
-  font-size: 16px;
-  font-family: 'Myriad Pro Regular';
-  @media (min-width: $md) {
-    margin-top: -40px;
-    font-size: 21px;
+  img {
+    max-width: 80px;
+    display: block;
+    margin: 0 auto;
   }
 }
-.form-registro {
-  .registro {
+
+.container-fluid {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.login-bg {
+  width: 60.5%;
+  background: url(../../../../assets/images/login/background.png);
+  @media (max-width: $md) {
+    width: 0%;
+  }
+}
+.login-form {
+  width: 39.5%;
+  @media (max-width: $md) {
+    width: 100%;
+  }
+}
+
+.form-login {
+  .mat-form-field {
+    width: 100%;
+  }
+  .mat-form-field-wrapper {
+    padding-bottom: -1.25em !important;
+  }
+  .mat-form-field-wrapper {
+    padding-bottom: -1.25em !important;
+  }
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: black !important;
+  }
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 {
+    text-align: center;
+    font-weight: bold;
+  }
+  h2 {
+    text-align: center;
+    margin: 0px;
+  }
+
+  p {
+    text-align: right;
+    color: black;
+  }
+  p:hover {
+    color: $blue-stupendo;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .register-redirect:hover {
+    color: black !important;
+    cursor: auto;
+  }
+  .register-redirect {
+    padding-top: 20px;
+    text-align: center;
+    text-decoration: none !important;
+
+    span {
+      color: $blue-stupendo;
+      cursor: pointer;
+    }
+  }
+
+  .login-button {
+    background-color: $blue-stupendo;
+    height: 50px;
+  }
+
+  .login2 {
     .row {
       min-height: auto;
       padding-top: 0;
@@ -30,6 +113,8 @@
 
       label {
         color: #999999;
+        text-align: inherit;
+        padding: 0;
       }
 
       input {
@@ -44,11 +129,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
         transform-origin: left bottom;
-        transform: translate(10px, 31px) scale(1.2);
+        transform: translate(10px, 1.9rem) scale(1.2);
         font-size: 12px;
         @media (min-width: $md) {
-          transform-origin: left center;
-          transform: translate(10px, 30px) scale(1.2);
+          transform: translate(10px, 2rem) scale(1.2);
         }
       }
 
@@ -73,7 +157,6 @@
       input:not(:placeholder-shown) + label,
       input:focus + label {
         transform: translate(10px, 0) scale(1);
-        cursor: pointer;
         color: $blue-stupendo;
       }
       img {
@@ -86,9 +169,7 @@
         cursor: pointer;
       }
     }
-
     h1 {
-      margin: 0;
       font-size: 16px;
       line-height: 19px;
       color: $blue-stupendo;
@@ -99,54 +180,66 @@
         line-height: 21.6px;
       }
     }
-    input,
-    select {
-      margin: 0;
+    input {
       display: block;
       width: 100%;
       border: 1px solid $blue-stupendo;
       text-decoration: none;
       border-radius: 17px;
       color: $blue-stupendo;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 16px;
-      padding: 10px 8px;
+      padding: 10px 50px 10px 8px;
+      box-shadow: 1px 1px 1px rgba(124, 124, 124, 0.75);
       @media (min-width: $md) {
-        font-size: 14px;
+        box-shadow: none;
+        font-size: 16px;
         line-height: 19px;
-      }
-      &:focus {
-        outline: none;
       }
       &::placeholder {
         color: #999999;
       }
-    }
-
-    ul {
-      margin-bottom: 0;
-      margin-top: 5px;
-      padding-left: 15px;
-      li {
-        color: #808080;
-        font-size: 12px;
-        line-height: 11px;
-        text-align: left;
+      &:focus {
+        outline: none;
       }
     }
-
-    select {
-      margin-top: 24px;
-      background-image: linear-gradient(
-          45deg,
-          transparent 50%,
-          $blue-stupendo 50%
-        ),
-        linear-gradient(135deg, $blue-stupendo 50%, transparent 50%);
-      background-position: calc(100% - 20px) calc(1em + 2px),
-        calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
-      background-size: 5px 5px, 5px 5px, 1px 1.5em;
-      background-repeat: no-repeat;
+    .errors {
+      display: inline-flex;
+      flex-direction: column;
+      padding-top: 10px;
+      max-width: 50%;
+      .text-danger {
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        line-height: 12px;
+        color: #c1272d;
+        img {
+          padding: 0 3px;
+        }
+        @media (min-width: $md) {
+          font-size: 12px;
+        }
+      }
+      @media (min-width: $md) {
+        max-width: auto;
+      }
+    }
+    .recuperar-contrasena {
+      display: flex;
+      float: right;
+      color: $turquoise-stupendo;
+      font-size: 10px;
+      padding: 10px 0 25px;
+      display: block;
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: 'Myriad Pro Regular';
+      @media (min-width: $md) {
+        display: inline-flex;
+        font-size: 12px;
+        padding: 10 0 30px;
+      }
     }
     button {
       font-family: 'Myriad Pro Regular';
@@ -158,10 +251,16 @@
       color: #ffffff;
       letter-spacing: 1.8px;
       line-height: 21.6px;
-      margin-top: 30px;
       margin-bottom: 30px;
       border: none;
       padding: 10px 0;
+      box-shadow: 1px 1px 1px rgba(124, 124, 124, 0.75);
+      &:focus {
+        outline: none;
+      }
+      @media (min-width: $md) {
+        box-shadow: none;
+      }
     }
     p {
       text-align: center;
@@ -177,18 +276,53 @@
         font-size: 16px;
       }
     }
-    .text-danger {
-      margin-top: 5px;
-      display: flex;
-      align-items: center;
-      font-size: 10px;
-      line-height: 12px;
-      color: #c1272d;
-      img {
-        padding: 0 3px;
+  }
+}
+
+.verification-modal {
+  .modal-content {
+    border: none;
+    .modal-header {
+      border-bottom: none;
+      justify-content: center;
+      position: relative;
+      h4 {
+        font-size: 24px;
+        color: $blue-stupendo;
+        font-family: 'Myriad Pro Regular';
       }
-      @media (min-width: $md) {
-        font-size: 12px;
+      button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        background: no-repeat;
+        border: solid 1px $turquoise-stupendo;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          color: $blue-stupendo;
+          font-family: 'Myriad Pro Regular';
+        }
+      }
+    }
+    .modal-body {
+      p {
+        font-size: 14px;
+        color: $blue-stupendo;
+        span {
+          color: $turquoise-stupendo;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+      .sub-title {
+        color: $blue-stupendo;
+        font-family: 'Myriad Pro Regular';
+        font-size: 14px;
       }
     }
   }
