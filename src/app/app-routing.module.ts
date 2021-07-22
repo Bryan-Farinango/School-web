@@ -20,8 +20,10 @@ import {
 
 import { RegisterGuardGuard } from './guards/register/register-guard.guard';
 import { VerificationGuardGuard } from './guards/verification-account/verification-guard.guard';
+import { InfoPageComponent } from './pages/info-page/info-page.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['info-school']);
 
 const routes: Routes = [
   {
@@ -44,6 +46,10 @@ const routes: Routes = [
   {
     path: 'recuperar-contrasena',
     component: RecuperarContrasenaComponent,
+  },
+  {
+    path: 'info-school',
+    component: InfoPageComponent,
   },
   {
     path: 'home',

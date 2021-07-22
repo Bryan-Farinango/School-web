@@ -30,6 +30,7 @@ import { RegisterGuardGuard } from '../guards/register/register-guard.guard';
 import { VerificationGuardGuard } from '../guards/verification-account/verification-guard.guard';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
+import { InfoPageComponent } from './info-page/info-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatIconModule } from '@angular/material/icon';
     VerificacionCuentaComponent,
     ErrorPage404Component,
     ErrorPage500Component,
+    InfoPageComponent,
   ],
   imports: [
     CommonModule,
