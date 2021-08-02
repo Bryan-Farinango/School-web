@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
+
 import { RecuperarContrasenaComponent } from './recuperar-contrasena-process/recuperar-contrasena/recuperar-contrasena.component';
 import { MensajeContrasenaComponent } from './recuperar-contrasena-process/mensaje-contrasena/mensaje-contrasena.component';
 import { FormularioRecuperarContrasenaComponent } from './recuperar-contrasena-process/formulario-recuperar-contrasena/formulario-recuperar-contrasena.component';
@@ -31,6 +31,43 @@ import { VerificationGuardGuard } from '../guards/verification-account/verificat
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { InfoPageComponent } from './info-page/info-page.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { MatListModule } from '@angular/material/list';
+import { CreateSubjectComponent } from './create-subject/create-subject.component';
+
+//news
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
+
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CreateGradeComponent } from './create-grade/create-grade.component';
 
 @NgModule({
   declarations: [
@@ -46,26 +83,90 @@ import { InfoPageComponent } from './info-page/info-page.component';
     ErrorPage404Component,
     ErrorPage500Component,
     InfoPageComponent,
+    CreateUserComponent,
+    CreateSubjectComponent,
+    CreateGradeComponent,
   ],
   imports: [
     CommonModule,
     ComponentsModule,
     AppRoutingModule,
     FormsModule,
+    MatTooltipModule,
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatSnackBarModule,
     MatInputModule,
+    MatStepperModule,
     MatRippleModule,
     FlexLayoutModule,
     MatButtonModule,
+    MatTabsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSortModule,
     MatIconModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatSidenavModule,
+    MatListModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatGridListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatSliderModule,
   ],
   providers: [RegisterGuardGuard, VerificationGuardGuard],
+  exports: [
+    MatInputModule,
+    MatTabsModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatSliderModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatRippleModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatStepperModule,
+    FlexLayoutModule,
+    MatDividerModule,
+    MatBadgeModule,
+  ],
 })
 export class PagesModule {}

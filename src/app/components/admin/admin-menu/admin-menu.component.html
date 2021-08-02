@@ -1,0 +1,120 @@
+<mat-nav-list>
+  <span style="padding-left: 25px; font-weight: 400; color: lightgrey"
+    >EDUCACIÓN</span
+  >
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLink]="['/home']"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>home</mat-icon>
+      </button>
+      <span>Inicio</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLink]="['/home/create-grade']"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>school</mat-icon>
+      </button>
+      <span>Grado Escolar</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLink]="['/home/create-subject']"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>post_add</mat-icon>
+      </button>
+      <span>Crear Asignatura</span>
+    </a>
+  </mat-list-item>
+
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLink]="['/home/create-teacher']"
+    [routerLink]="['/home/create-user']"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>person_add</mat-icon>
+      </button>
+      <span>Añadir Usuario</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>border_color</mat-icon>
+      </button>
+      <span>Dashboard</span>
+    </a>
+  </mat-list-item>
+  <br />
+
+  <span
+    style="
+      padding-left: 25px;
+      font-weight: 400;
+      color: lightgrey;
+      margin-top: 30px;
+    "
+    >TRANSPORTE</span
+  >
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>directions_bus</mat-icon>
+      </button>
+      <span>Crear Ruta</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>approval</mat-icon>
+      </button>
+      <span>Añadir Transporte</span>
+    </a>
+  </mat-list-item>
+  <mat-list-item
+    class="menu"
+    routerLinkActive="activeLink"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a
+      ><button mat-icon-button>
+        <mat-icon>group_add</mat-icon>
+      </button>
+      <span>Solicitud Registro</span>
+    </a>
+  </mat-list-item>
+
+  <!---->
+</mat-nav-list>

@@ -1,0 +1,104 @@
+<div class="color-header"></div>
+<div class="container-fluid background-layout-login">
+  <br />
+  <br />
+  <div [@fadeInUp] class="card">
+    <div class="login-form">
+      <div class="col-md-12">
+        <br /><br /><br />
+
+        <div class="container-form">
+          <form
+            class="form-login"
+            [formGroup]="registerForm"
+            (ngSubmit)="onRegister(f)"
+            #f="ngForm"
+          >
+            <div class="login">
+              <h1>Crea un grado escolar</h1>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre del grado escolar</mat-label>
+                <input
+                  type="text"
+                  name="nombre"
+                  formControlName="nombre"
+                  matInput
+                  #fieldEmail
+                  required
+                  placeholder="Nombre"
+                  maxlength="50"
+                />
+
+                <mat-icon matSuffix>menu_book</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Jornada</mat-label>
+                <mat-select formControlName="apellido" required>
+                  <mat-option value="one">Mañana</mat-option>
+                  <mat-option value="two">Tarde</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea
+                  matInput
+                  formControlName="email"
+                  style="height: 70px"
+                  required
+                ></textarea>
+
+                <mat-icon matSuffix>description</mat-icon>
+
+                <mat-error
+                  *ngIf="
+                    f.touched &&
+                    registerForm.controls['email'].hasError('pattern')
+                  "
+                  >Introduce un correo electrónico válido
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Rango de edad</mat-label>
+                <input
+                  type="text"
+                  name="nombre"
+                  formControlName="password"
+                  matInput
+                  #fieldEmail
+                  required
+                  placeholder="1-3 años"
+                  maxlength="50"
+                />
+
+                <mat-icon matSuffix>child_care</mat-icon>
+              </mat-form-field>
+
+              <div *ngIf="emailExist" class="text-danger">
+                El email ingresado ya se encuentra registrado <br /><br />
+              </div>
+
+              <button
+                class="login-button"
+                color="primary"
+                type="submit"
+                mat-flat-button
+              >
+                Crear Grado
+              </button>
+
+              <p class="register-redirect">
+                Crea los diferentes grados escolares para los estudiantes
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->

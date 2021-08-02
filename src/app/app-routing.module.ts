@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VerificacionCorreoComponent } from './pages/registro-process/verificacion-correo/verificacion-correo.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -21,6 +21,9 @@ import {
 import { RegisterGuardGuard } from './guards/register/register-guard.guard';
 import { VerificationGuardGuard } from './guards/verification-account/verification-guard.guard';
 import { InfoPageComponent } from './pages/info-page/info-page.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
+import { CreateGradeComponent } from './pages/create-grade/create-grade.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -51,11 +54,34 @@ const routes: Routes = [
     path: 'info-school',
     component: InfoPageComponent,
   },
+  //HOME ADMIN
   {
     path: 'home',
     component: HomeComponent,
     canActivate: [AngularFireAuthGuard, RegisterGuardGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      {
+        path: 'create-teacher', // child route path
+        component: CreateUserComponent, // child route component that the router renders
+      },
+      {
+        path: 'create-subject', // child route path
+        component: CreateSubjectComponent, // child route component that the router renders
+      },
+      {
+        path: 'create-grade', // child route path
+        component: CreateGradeComponent, // child route component that the router renders
+      },
+      {
+        path: 'create-user', // child route path
+        component: CreateUserComponent, // child route component that the router renders
+      },
+    ],
+  },
+  {
+    path: "home/error-404'",
+    component: ErrorPage404Component,
   },
   {
     path: 'contrasena-enviada',
