@@ -24,6 +24,7 @@ import { InfoPageComponent } from './pages/info-page/info-page.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
 import { CreateGradeComponent } from './pages/create-grade/create-grade.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -62,10 +63,6 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     children: [
       {
-        path: 'create-teacher', // child route path
-        component: CreateUserComponent, // child route component that the router renders
-      },
-      {
         path: 'create-subject', // child route path
         component: CreateSubjectComponent, // child route component that the router renders
       },
@@ -76,6 +73,10 @@ const routes: Routes = [
       {
         path: 'create-user', // child route path
         component: CreateUserComponent, // child route component that the router renders
+      },
+      {
+        path: 'admin-dashboard', // child route path
+        component: AdminDashboardComponent, // child route component that the router renders
       },
     ],
   },

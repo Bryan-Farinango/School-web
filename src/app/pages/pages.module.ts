@@ -68,6 +68,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CreateGradeComponent } from './create-grade/create-grade.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { CustomerCreateUpdateComponent } from './admin-dashboard/customer-create-update/customer-create-update.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { CreateGradeComponent } from './create-grade/create-grade.component';
     CreateUserComponent,
     CreateSubjectComponent,
     CreateGradeComponent,
+    AdminDashboardComponent,
+    CustomerCreateUpdateComponent,
   ],
   imports: [
     CommonModule,
