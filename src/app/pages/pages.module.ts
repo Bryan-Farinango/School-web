@@ -70,6 +70,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CreateGradeComponent } from './create-grade/create-grade.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CustomerCreateUpdateComponent } from './admin-dashboard/customer-create-update/customer-create-update.component';
+import { CreateRutaComponent } from './create-ruta/create-ruta.component';
+import { RutasComponent } from './rutas/rutas.component';
+import { RutaUpdateComponent } from './rutas/ruta-update/ruta-update.component';
+import { CreateDriverComponent } from './create-driver/create-driver.component';
+import { SolicitudRegistroTransporteComponent } from './solicitud-registro-transporte/solicitud-registro-transporte.component';
+import { DriversComponent } from './drivers/drivers.component';
+import { UpdateDriverComponent } from './drivers/update-driver/update-driver.component';
+import { SignaturesComponent } from './signatures/signatures.component';
+import { UpdateSignaturesComponent } from './signatures/update-signatures/update-signatures.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +99,15 @@ import { CustomerCreateUpdateComponent } from './admin-dashboard/customer-create
     CreateGradeComponent,
     AdminDashboardComponent,
     CustomerCreateUpdateComponent,
+    CreateRutaComponent,
+    RutasComponent,
+    RutaUpdateComponent,
+    CreateDriverComponent,
+    SolicitudRegistroTransporteComponent,
+    DriversComponent,
+    UpdateDriverComponent,
+    SignaturesComponent,
+    UpdateSignaturesComponent,
   ],
   imports: [
     CommonModule,

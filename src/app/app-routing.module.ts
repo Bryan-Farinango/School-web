@@ -25,6 +25,12 @@ import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CreateSubjectComponent } from './pages/create-subject/create-subject.component';
 import { CreateGradeComponent } from './pages/create-grade/create-grade.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { CreateRutaComponent } from './pages/create-ruta/create-ruta.component';
+import { RutasComponent } from './pages/rutas/rutas.component';
+import { CreateDriverComponent } from './pages/create-driver/create-driver.component';
+import { SolicitudRegistroTransporteComponent } from './pages/solicitud-registro-transporte/solicitud-registro-transporte.component';
+import { DriversComponent } from './pages/drivers/drivers.component';
+import { SignaturesComponent } from './pages/signatures/signatures.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -77,6 +83,31 @@ const routes: Routes = [
       {
         path: 'admin-dashboard', // child route path
         component: AdminDashboardComponent, // child route component that the router renders
+      },
+
+      {
+        path: 'create-ruta', // child route path
+        component: CreateRutaComponent, // child route component that the router renders
+      },
+      {
+        path: 'rutas', // child route path
+        component: RutasComponent, // child route component that the router renders
+      },
+      {
+        path: 'create-driver', // child route path
+        component: CreateDriverComponent, // child route component that the router renders
+      },
+      {
+        path: 'solicitud-registro', // child route path
+        component: SolicitudRegistroTransporteComponent, // child route component that the router renders
+      },
+      {
+        path: 'drivers', // child route path
+        component: DriversComponent, // child route component that the router renders
+      },
+      {
+        path: 'signatures', // child route path
+        component: SignaturesComponent, // child route component that the router renders
       },
     ],
   },
