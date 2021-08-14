@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  apiUrl: 'http://157.245.116.195:8888/api',
+  apiKeyAdmin: '3ac03c93-ddb3-4fe0-84e3-92b14c3e5bd9',
   production: false,
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebaseConfig: {

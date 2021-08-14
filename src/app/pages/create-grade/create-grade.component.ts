@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { fadeInRightAnimation } from '../../@fury/animations/fade-in-right.animation';
 import { scaleInAnimation } from '../../@fury/animations/scale-in.animation';
 import { fadeInUpAnimation } from '../../@fury/animations/fade-in-up.animation';
+import { AdminApiService } from 'src/app/services/admin-api.service';
+import { ToastrService } from 'ngx-toastr';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-create-grade',
@@ -17,39 +20,87 @@ export class CreateGradeComponent implements OnInit {
   hide = true;
   public showPassword: boolean;
   public emailExist: boolean;
-  registerForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    telefono: new FormControl(''),
-    rol: new FormControl(''),
+  public message: string;
+  public successful: boolean;
+  dataObjRegister = {
+    nombre_grado: '',
+    jornada: '',
+    descripcion: '',
+    rango_edad: '',
+  };
+
+  gradeForm = new FormGroup({
+    name: new FormControl(''),
+    jornada: new FormControl(''),
+    description: new FormControl(''),
+    ageRange: new FormControl(''),
   });
 
-  constructor(private authSvc: AuthService, private router: Router) {
+  constructor(
+    private authSvc: AuthService,
+    private router: Router,
+    private gradeService: AdminApiService,
+    private toastr: ToastrService
+  ) {
     this.showPassword = false;
     this.emailExist = false;
+    this.successful = true;
   }
   setShowPassword() {
     this.showPassword = !this.showPassword;
   }
   ngOnInit(): void {}
 
-  async onRegister(form: any) {
+  showAlert(message, title): void {
+    this.toastr.error(message, title, {
+      toastClass: 'toast-alert-message',
+      tapToDismiss: false,
+      disableTimeOut: true,
+      closeButton: true,
+    });
+  }
+  showSuccess(message, title): void {
+    this.toastr.success(message, title, {
+      toastClass: 'toast-success-message',
+      tapToDismiss: false,
+      disableTimeOut: true,
+      closeButton: true,
+    });
+  }
+
+  async onCreateGrade(form: any) {
     if (form.invalid) {
       return;
     }
 
-    const { email, password } = this.registerForm.value;
+    const { name, jornada, description, ageRange } = this.gradeForm.value;
+    this.dataObjRegister.nombre_grado = name;
+    this.dataObjRegister.jornada = jornada;
+    this.dataObjRegister.descripcion = description;
+    this.dataObjRegister.rango_edad = ageRange;
 
     try {
-      const user = await this.authSvc.register(email, password);
-
-      if (user.code == 'auth/email-already-in-use') {
-        this.emailExist = true;
-      } else if (user) {
-        this.router.navigate(['/verificacion-correo']);
-      }
+      const grade = this.gradeService
+        .createGrade(this.dataObjRegister)
+        .subscribe(
+          (result) => {
+            if (result.resultado == true) {
+              this.showSuccess('Grado creado correctamente.', 'Listo');
+              this.gradeForm.get('name').setValue(' ');
+              this.gradeForm.get('jornada').setValue(' ');
+              this.gradeForm.get('description').setValue(' ');
+              this.gradeForm.get('ageRange').setValue(' ');
+              this.successful = true;
+            } else {
+              this.successful = false;
+              this.message = result.mensaje;
+              this.showAlert('El grado ya existe', 'Error');
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     } catch (error) {}
   }
 }

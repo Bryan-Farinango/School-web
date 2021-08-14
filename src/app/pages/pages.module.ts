@@ -79,6 +79,7 @@ import { DriversComponent } from './drivers/drivers.component';
 import { UpdateDriverComponent } from './drivers/update-driver/update-driver.component';
 import { SignaturesComponent } from './signatures/signatures.component';
 import { UpdateSignaturesComponent } from './signatures/update-signatures/update-signatures.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -154,6 +155,7 @@ import { UpdateSignaturesComponent } from './signatures/update-signatures/update
     MatSelectModule,
     MatSlideToggleModule,
     MatSliderModule,
+    ToastrModule.forRoot(),
   ],
   providers: [RegisterGuardGuard, VerificationGuardGuard],
   exports: [

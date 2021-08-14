@@ -102,7 +102,7 @@ h1 {
   }
 
   p {
-    text-align: right;
+    //text-align: right;
     color: black;
   }
   p:hover {
@@ -239,28 +239,7 @@ h1 {
         outline: none;
       }
     }
-    .errors {
-      display: inline-flex;
-      flex-direction: column;
-      padding-top: 10px;
-      max-width: 50%;
-      .text-danger {
-        display: flex;
-        align-items: center;
-        font-size: 10px;
-        line-height: 12px;
-        color: #c1272d;
-        img {
-          padding: 0 3px;
-        }
-        @media (min-width: $md) {
-          font-size: 12px;
-        }
-      }
-      @media (min-width: $md) {
-        max-width: auto;
-      }
-    }
+
     .recuperar-contrasena {
       display: flex;
       float: right;
@@ -361,5 +340,16 @@ h1 {
         font-size: 14px;
       }
     }
+  }
+}
+.errors {
+  padding-top: 20px;
+  text-align: center !important;
+  font-size: 10px;
+  line-height: 12px;
+  color: #c1272d;
+
+  @media (max-width: $sm) {
+    max-width: auto;
   }
 }
