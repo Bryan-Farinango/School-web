@@ -8,14 +8,17 @@ export const environment = {
   production: false,
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebaseConfig: {
-    apiKey: 'AIzaSyCXb9JLF1HSLFbLD0us47c5gCVMZJ-lC8Q',
-    authDomain: 'school-app-c7c3d.firebaseapp.com',
-    projectId: 'school-app-c7c3d',
-    storageBucket: 'school-app-c7c3d.appspot.com',
-    messagingSenderId: '841139342160',
-    appId: '1:841139342160:web:e8efdbdc70c2ec046efa55',
-    measurementId: 'G-WQCNP4LW92',
+    apiKey: 'AIzaSyBHd8F9-iH9DLlFW4QK1v6awJv5k8Oz6B8',
+    authDomain: 'school-web-b8fc2.firebaseapp.com',
+    projectId: 'school-web-b8fc2',
+    storageBucket: 'school-web-b8fc2.appspot.com',
+    messagingSenderId: '161151247861',
+    appId: '1:161151247861:web:ce4d1a8f0f6a6d737e6cbc',
+    measurementId: 'G-GZJVPK15GF',
   },
+
+  //credentials for drivers firebase
+  driverFirebaseApiKey: 'AIzaSyAtp_1k7RgfaMiPWuPA6fQYVxEUnJ2-c20',
 };
 
 /*

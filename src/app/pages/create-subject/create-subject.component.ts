@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-create-subject',
   templateUrl: './create-subject.component.html',
   styleUrls: ['./create-subject.component.scss'],
-  animations: [fadeInUpAnimation, fadeInRightAnimation, scaleInAnimation],
 })
 export class CreateSubjectComponent implements OnInit {
   public message: string;

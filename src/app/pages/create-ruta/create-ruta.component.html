@@ -10,7 +10,7 @@
         <div class="container-form">
           <form
             class="form-login"
-            [formGroup]="registerForm"
+            [formGroup]="rutaForm"
             (ngSubmit)="onRegister(f)"
             #f="ngForm"
           >
@@ -22,7 +22,7 @@
                 <input
                   type="text"
                   name="nombre"
-                  formControlName="nombre"
+                  formControlName="title"
                   matInput
                   #fieldEmail
                   required
@@ -46,7 +46,7 @@
                   <input
                     type="text"
                     name="apellido"
-                    formControlName="apellido"
+                    formControlName="number"
                     matInput
                     #fieldEmail
                     required
@@ -61,7 +61,7 @@
                   <input
                     type="text"
                     name="apellido"
-                    formControlName="apellido"
+                    formControlName="city"
                     matInput
                     #fieldEmail
                     required
@@ -76,7 +76,7 @@
                 <input
                   type="text"
                   name="nombre"
-                  formControlName="nombre"
+                  formControlName="address1"
                   matInput
                   #fieldEmail
                   required
@@ -91,7 +91,7 @@
                 <input
                   type="text"
                   name="nombre"
-                  formControlName="nombre"
+                  formControlName="address2"
                   matInput
                   #fieldEmail
                   required
@@ -106,7 +106,7 @@
                 <input
                   type="text"
                   name="nombre"
-                  formControlName="nombre"
+                  formControlName="address3"
                   matInput
                   #fieldEmail
                   required

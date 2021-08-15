@@ -3,143 +3,6 @@
   <div fxLayout="column" fxLayoutAlign="start center">
     <br />
     <br />
-    <!--
-      <div [@fadeInUp] class="card" style="width: 500px">
-        <mat-horizontal-stepper #stepper="matHorizontalStepper" [linear]="true">
-          <mat-step [stepControl]="accountFormGroup">
-            <form [formGroup]="accountFormGroup" class="form-subject">
-              <ng-template matStepLabel>Crear Asignatura</ng-template>
-  
-              <div class="heading">Crea una asignatura</div>
-              <div class="subheading">Ingresa los datos requeridos.</div>
-  
-              <div class="content" fxLayout="column" fxLayoutGap="8px">
-                <mat-form-field fxFlex="auto">
-                  <mat-label>Nombre de la asignatura</mat-label>
-                  <input formControlName="subjectName" matInput required />
-                </mat-form-field>
-  
-                <mat-form-field fxFlex="auto">
-                  <mat-label>Descripción</mat-label>
-                  <textarea
-                    formControlName="description"
-                    matInput
-                    required
-                    style="height: 60px"
-                  ></textarea>
-                  <mat-hint>De que trata la asignatura?</mat-hint>
-                </mat-form-field>
-                <br />
-                <div
-                  fxLayout="column"
-                  fxLayout.gt-xs="row"
-                  fxLayoutGap="8px"
-                  fxLayoutGap.gt-xs="24px"
-                  style="width: 150px"
-                >
-                  <div fxFlex="auto" fxLayout="row" fxLayoutGap="8px">
-                    <mat-form-field fxFlex="1 1 auto">
-                      <mat-label>Año escolar</mat-label>
-                      <mat-select formControlName="year">
-                        <mat-option
-                          *ngFor="let option of yearOptions"
-                          [value]="option"
-                          >{{ option }}</mat-option
-                        >
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-  
-              <div
-                class="actions"
-                fxLayout="row"
-                fxLayoutAlign="end center"
-                fxLayoutGap="8px"
-              >
-                <button
-                  (click)="stepper.reset()"
-                  [disabled]="accountFormGroup.pristine"
-                  mat-button
-                  type="button"
-                  style="color: white"
-                >
-                  RESETEAR
-                </button>
-                <button
-                  [disabled]="accountFormGroup.invalid"
-                  mat-raised-button
-                  matStepperNext
-                  style="color: white"
-                >
-                  SIGUIENTE
-                </button>
-              </div>
-            </form>
-          </mat-step>
-  
-          <mat-step [stepControl]="passwordFormGroup">
-            <form [formGroup]="passwordFormGroup">
-              <ng-template matStepLabel>Asignar Grado</ng-template>
-              <br />
-              <div class="subheading">
-                Asigna un grado escolar a tu asignatura.
-              </div>
-  
-              <div class="content" fxLayout="column" fxLayoutGap="8px">
-                <div
-                  fxLayout="column"
-                  fxLayout.gt-xs="row"
-                  fxLayoutGap="8px"
-                  fxLayoutGap.gt-xs="24px"
-                  style="width: 300px"
-                >
-                  <div fxFlex="auto" fxLayout="row" fxLayoutGap="8px">
-                    <mat-form-field fxFlex="1 1 auto">
-                      <mat-label>Grado escolar</mat-label>
-                      <mat-select formControlName="grade">
-                        <mat-option
-                          *ngFor="let option of gradeOptions"
-                          [value]="option"
-                          >{{ option }}</mat-option
-                        >
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-  
-              <div
-                class="actions"
-                fxLayout="row"
-                fxLayoutAlign="end center"
-                fxLayoutGap="8px"
-              >
-                <button
-                  mat-button
-                  matStepperPrevious
-                  type="button"
-                  style="color: white"
-                >
-                  ANTERIOR
-                </button>
-  
-                <button
-                  (click)="submit()"
-                  [disabled]="passwordFormGroup.invalid"
-                  mat-raised-button
-                  matStepperNext
-                  style="color: white"
-                >
-                  CREAR ASIGNATURA
-                </button>
-              </div>
-            </form>
-          </mat-step>
-        </mat-horizontal-stepper>
-      </div>
-      -->
 
     <div [@fadeInUp] class="card">
       <mat-vertical-stepper
@@ -158,13 +21,13 @@
             <div class="content" fxLayout="column" fxLayoutGap="8px">
               <mat-form-field fxFlex="auto">
                 <mat-label>Nombre</mat-label>
-                <input formControlName="username" matInput required />
+                <input formControlName="name" matInput required />
                 <mat-hint>Primer nombre.</mat-hint>
               </mat-form-field>
 
               <mat-form-field fxFlex="auto">
                 <mat-label>Apellido</mat-label>
-                <input formControlName="name" matInput required />
+                <input formControlName="lastName" matInput required />
                 <mat-hint>Primer Apellido</mat-hint>
               </mat-form-field>
 
@@ -184,7 +47,7 @@
                   <mat-form-field fxFlex="2 1 auto">
                     <mat-label>Capacidad máxima</mat-label>
                     <input
-                      formControlName="phone"
+                      formControlName="capacity"
                       matInput
                       required
                       placeholder="10 personas"
@@ -205,7 +68,12 @@
               </div>
               <mat-form-field fxFlex="auto">
                 <mat-label>Experiencia Laboral</mat-label>
-                <textarea matInput required style="height: 60px"></textarea>
+                <textarea
+                  formControlName="experience"
+                  matInput
+                  required
+                  style="height: 60px"
+                ></textarea>
                 <mat-hint>Experiencia en transporte escolar</mat-hint>
               </mat-form-field>
             </div>

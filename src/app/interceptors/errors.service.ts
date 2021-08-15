@@ -14,15 +14,12 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ErrorsService implements HttpInterceptor {
-  constructor() {
-    console.log('PORQUE ME PERSIGUE LA DESGRACIA');
-  }
+  constructor() {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('interceptors');
     return next.handle(req);
   }
 }

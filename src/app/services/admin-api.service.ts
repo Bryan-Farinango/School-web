@@ -48,6 +48,58 @@ export class AdminApiService {
       .pipe(retry(1), catchError(this.processError));
   }
 
+  createUser(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/registro',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  createRuta(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/rutas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  createDriverWithFirebaseApi(data: any) {
+    return this.httpClient
+      .post<any>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          environment.driverFirebaseApiKey,
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  sendVerificationAccountDriverWithFirebase(data: any) {
+    return this.httpClient
+      .post<any>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' +
+          environment.driverFirebaseApiKey,
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  createDriver(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/transportista',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

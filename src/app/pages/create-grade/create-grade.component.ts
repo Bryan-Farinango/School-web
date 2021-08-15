@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeInRightAnimation } from '../../@fury/animations/fade-in-right.animation';
 import { scaleInAnimation } from '../../@fury/animations/scale-in.animation';
@@ -14,9 +14,9 @@ import { empty } from 'rxjs';
   selector: 'app-create-grade',
   templateUrl: './create-grade.component.html',
   styleUrls: ['./create-grade.component.scss'],
-  animations: [fadeInUpAnimation, fadeInRightAnimation, scaleInAnimation],
 })
 export class CreateGradeComponent implements OnInit {
+  @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
   hide = true;
   public showPassword: boolean;
   public emailExist: boolean;
@@ -86,11 +86,8 @@ export class CreateGradeComponent implements OnInit {
           (result) => {
             if (result.resultado == true) {
               this.showSuccess('Grado creado correctamente.', 'Listo');
-              this.gradeForm.get('name').setValue(' ');
-              this.gradeForm.get('jornada').setValue(' ');
-              this.gradeForm.get('description').setValue(' ');
-              this.gradeForm.get('ageRange').setValue(' ');
               this.successful = true;
+              this.formDirective.resetForm();
             } else {
               this.successful = false;
               this.message = result.mensaje;
