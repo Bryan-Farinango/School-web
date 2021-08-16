@@ -100,6 +100,16 @@ export class AdminApiService {
       .pipe(retry(1), catchError(this.processError));
   }
 
+  getUsers(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-users',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

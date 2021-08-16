@@ -69,7 +69,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CreateGradeComponent } from './create-grade/create-grade.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { CustomerCreateUpdateComponent } from './admin-dashboard/customer-create-update/customer-create-update.component';
+
 import { CreateRutaComponent } from './create-ruta/create-ruta.component';
 import { RutasComponent } from './rutas/rutas.component';
 import { RutaUpdateComponent } from './rutas/ruta-update/ruta-update.component';
@@ -80,6 +80,7 @@ import { UpdateDriverComponent } from './drivers/update-driver/update-driver.com
 import { SignaturesComponent } from './signatures/signatures.component';
 import { UpdateSignaturesComponent } from './signatures/update-signatures/update-signatures.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,7 @@ import { ToastrModule } from 'ngx-toastr';
     CreateSubjectComponent,
     CreateGradeComponent,
     AdminDashboardComponent,
-    CustomerCreateUpdateComponent,
+
     CreateRutaComponent,
     RutasComponent,
     RutaUpdateComponent,
@@ -156,6 +157,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatSlideToggleModule,
     MatSliderModule,
     ToastrModule.forRoot(),
+    DataTablesModule,
   ],
   providers: [RegisterGuardGuard, VerificationGuardGuard],
   exports: [

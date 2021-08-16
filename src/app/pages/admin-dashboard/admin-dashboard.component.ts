@@ -1,167 +1,215 @@
+import { AdminApiService } from 'src/app/services/admin-api.service';
+import { ExcelService } from '../../services/excel.service';
 import {
-  AfterViewInit,
   Component,
-  Input,
-  OnDestroy,
+  HostListener,
   OnInit,
+  TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable, of, ReplaySubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { ListColumn } from './list-column.model';
-import { ALL_IN_ONE_TABLE_DEMO_DATA } from './all-in-one-table.demo';
-import { CustomerCreateUpdateComponent } from './customer-create-update/customer-create-update.component';
-import { Customer } from './customer.model';
-import { fadeInRightAnimation } from '../../@fury/animations/fade-in-right.animation';
-import { fadeInUpAnimation } from '../../@fury/animations/fade-in-up.animation';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
+import { DataTableDirective } from 'angular-datatables';
+import { formatDate } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import * as XLSX from 'xlsx';
+declare var require: any;
+const FileSaver = require('file-saver');
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss'],
-  animations: [fadeInRightAnimation, fadeInUpAnimation],
+  providers: [NgbModal],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AdminDashboardComponent implements OnInit {
-  subject$: ReplaySubject<Customer[]> = new ReplaySubject<Customer[]>(1);
-  data$: Observable<Customer[]> = this.subject$.asObservable();
-  customers: Customer[];
+  @ViewChild('content', { static: false }) modalDownload: TemplateRef<void>;
+  @ViewChild('contentEdit', { static: false }) modalEdit: TemplateRef<void>;
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  processList: any;
+  processStatus: number;
+  url = environment.apiUrl;
+  httpHeader = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
+  fileName: string;
+  currentDate = formatDate(new Date(), '_ddMMyyyy_Hmmss', 'en');
+  showAdvancedSearch: boolean;
+  dataObjProcessData = {
+    api_key_admin: environment.apiKeyAdmin,
+  };
+  fileList: any;
+  files = {
+    document: '',
+  };
 
-  @Input()
-  columns: ListColumn[] = [
-    { name: 'Checkbox', property: 'checkbox', visible: false },
-    { name: 'Image', property: 'image', visible: true },
-    { name: 'Name', property: 'name', visible: true, isModelProperty: true },
-    {
-      name: 'First Name',
-      property: 'firstName',
-      visible: false,
-      isModelProperty: true,
-    },
-    {
-      name: 'Last Name',
-      property: 'lastName',
-      visible: false,
-      isModelProperty: true,
-    },
-    {
-      name: 'Street',
-      property: 'street',
-      visible: true,
-      isModelProperty: true,
-    },
-    {
-      name: 'Zipcode',
-      property: 'zipcode',
-      visible: true,
-      isModelProperty: true,
-    },
-    { name: 'City', property: 'city', visible: true, isModelProperty: true },
-    {
-      name: 'Phone',
-      property: 'phoneNumber',
-      visible: true,
-      isModelProperty: true,
-    },
-    { name: 'Actions', property: 'actions', visible: true },
-  ] as ListColumn[];
-  pageSize = 10;
-  dataSource: MatTableDataSource<Customer> | null;
+  editForm = new FormGroup({
+    name: new FormControl(''),
+    lastName: new FormControl(''),
+    rol: new FormControl(''),
+    phone: new FormControl(''),
+  });
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private dialog: MatDialog) {}
+  roleOptions = ['Administrador', 'Profesor'];
 
-  get visibleColumns() {
-    return this.columns
-      .filter((column) => column.visible)
-      .map((column) => column.property);
-  }
-
-  getData() {
-    return of(
-      ALL_IN_ONE_TABLE_DEMO_DATA.map((customer) => new Customer(customer))
-    );
+  constructor(
+    private adminService: AdminApiService,
+    private http: HttpClient,
+    public dataService: DataService,
+    private authSvc: AuthService,
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    private excelService: ExcelService
+  ) {
+    this.processStatus = -1;
+    this.fileName = 'Reporte_usuarios' + this.currentDate;
+    this.showAdvancedSearch = false;
   }
 
   ngOnInit(): void {
-    this.getData().subscribe((customers) => {
-      this.subject$.next(customers);
+    this.getAllProcessData();
+  }
+
+  filterByStatus(state: number): void {
+    this.processStatus = state;
+    this.showAdvancedSearch = false;
+    this.reloadTable();
+  }
+
+  private async reloadTable() {
+    const dtIntance = await this.dtElement.dtInstance;
+    dtIntance.ajax.reload();
+  }
+
+  getAllProcessData(): void {
+    const that = this;
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      serverSide: true,
+      processing: true,
+      ordering: false,
+      lengthChange: false,
+      info: false,
+      paging: true,
+      searching: true,
+      ajax: (dataTablesParameters: any, callback) => {
+        that.http
+          .post<any>(
+            this.url + '/get-users',
+            this.getInputData(dataTablesParameters),
+            this.httpHeader
+          )
+          .subscribe((respProcess) => {
+            // const resp = respProcess.procesos.original;
+            const resp = respProcess.usuarios.original;
+
+            that.processList = resp.data;
+
+            callback({
+              recordsTotal: resp.recordsTotal,
+              recordsFiltered: resp.recordsFiltered,
+              data: [],
+            });
+          });
+      },
+      // columns: [{ data: 'titulo' }, { data: 'estado' }, { data: 'created_at' }, { data: 'tipo' }, { data: '_id' }],
+      columns: [{ data: 'nombres' }],
+      language: this.dataService.spanishDatatables,
+    };
+  }
+
+  getInputData(dataTable: any): any {
+    dataTable['api_key_admin'] = environment.apiKeyAdmin;
+    dataTable['formato_datatable'] = true;
+    return dataTable;
+  }
+
+  exportExcel(): void {
+    this.excelService.exportAsExcelFile(this.processList, this.fileName);
+  }
+
+  showFilterAdvancedSearch(): void {
+    this.showAdvancedSearch = true;
+  }
+  hideFilterAdvancedSearch(): void {
+    this.showAdvancedSearch = false;
+  }
+
+  showAlert(message, title): void {
+    this.toastr.error(message, title, {
+      toastClass: 'toast-alert-message',
+      tapToDismiss: false,
+      disableTimeOut: true,
+      closeButton: true,
     });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(filter((data) => !!data)).subscribe((customers) => {
-      this.customers = customers;
-      this.dataSource.data = customers;
+  }
+  showSuccess(message, title): void {
+    this.toastr.success(message, title, {
+      toastClass: 'toast-success-message',
+      tapToDismiss: false,
+      disableTimeOut: true,
+      closeButton: true,
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-  /*
-  createCustomer() {
-    this.dialog.open(CustomerCreateUpdateComponent).afterClosed().subscribe((customer: Customer) => {
-     
-      if (customer) {
-      
-        this.customers.unshift(new Customer(customer));
-        this.subject$.next(this.customers);
-      }
+  openModalDownload(): void {
+    this.modalService.open(this.modalDownload, {
+      centered: true,
+      backdrop: 'static',
+      size: 'md',
+      animation: true,
+      keyboard: false,
+      windowClass: 'download-file',
+      backdropClass: 'modal-backdrop-download-file',
     });
   }
-  */
 
-  updateCustomer(customer) {
-    this.dialog
-      .open(CustomerCreateUpdateComponent, {
-        data: customer,
-      })
-      .afterClosed()
-      .subscribe((customer) => {
-        /**
-         * Customer is the updated customer (if the user pressed Save - otherwise it's null)
-         */
-        if (customer) {
-          /**
-           * Here we are updating our local array.
-           * You would probably make an HTTP request here.
-           */
-          const index = this.customers.findIndex(
-            (existingCustomer) => existingCustomer.id === customer.id
-          );
-          this.customers[index] = new Customer(customer);
-          this.subject$.next(this.customers);
-        }
-      });
+  openModalEdit(): void {
+    this.modalService.open(this.modalEdit, {
+      centered: true,
+      backdrop: 'static',
+      size: 'md',
+      animation: true,
+      keyboard: false,
+      windowClass: 'download-file',
+      backdropClass: 'modal-backdrop-download-file',
+    });
   }
 
-  deleteCustomer(customer) {
-    /**
-     * Here we are updating our local array.
-     * You would probably make an HTTP request here.
-     */
-    this.customers.splice(
-      this.customers.findIndex(
-        (existingCustomer) => existingCustomer.id === customer.id
-      ),
-      1
-    );
-    this.subject$.next(this.customers);
+  openEditModal(
+    id: any,
+    nombres: any,
+    apellidos: any,
+    rol: any,
+    telefono: any
+  ): void {
+    this.openModalEdit();
+
+    this.editForm.reset({
+      name: nombres,
+      lastName: apellidos,
+      phone: telefono,
+      rol: rol,
+    });
   }
 
-  onFilterChange(value) {
-    if (!this.dataSource) {
+  onUpdate(form: any) {
+    if (form.invalid) {
+      this.showAlert('Campos Vacíos', 'Error');
       return;
     }
-    value = value.trim();
-    value = value.toLowerCase();
-    this.dataSource.filter = value;
-  }
 
-  ngOnDestroy() {}
+    this.reloadTable();
+  }
 }
