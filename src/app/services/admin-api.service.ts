@@ -110,6 +110,127 @@ export class AdminApiService {
       .pipe(retry(1), catchError(this.processError));
   }
 
+  editUsers(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/update-users',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  deleteUser(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/delete-users',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  //rutas
+  getRutas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-rutas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getDrivers(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-transportistas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  addDriverToRuta(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/add-driver-to-ruta',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  delDriverFromRuta(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/delete-driver-from-ruta',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  updateRutas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/update-rutas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  deleteRuta(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/delete-rutas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  //asignaturas
+  getSubjectSeparate(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-asignaturas-separate',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getSubject(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-asignaturas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  deleteSubject(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/delete-subject',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  updateSubject(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/update-subject',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

@@ -72,13 +72,13 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 
 import { CreateRutaComponent } from './create-ruta/create-ruta.component';
 import { RutasComponent } from './rutas/rutas.component';
-import { RutaUpdateComponent } from './rutas/ruta-update/ruta-update.component';
+
 import { CreateDriverComponent } from './create-driver/create-driver.component';
 import { SolicitudRegistroTransporteComponent } from './solicitud-registro-transporte/solicitud-registro-transporte.component';
 import { DriversComponent } from './drivers/drivers.component';
-import { UpdateDriverComponent } from './drivers/update-driver/update-driver.component';
+
 import { SignaturesComponent } from './signatures/signatures.component';
-import { UpdateSignaturesComponent } from './signatures/update-signatures/update-signatures.component';
+
 import { ToastrModule } from 'ngx-toastr';
 import { DataTablesModule } from 'angular-datatables';
 
@@ -103,13 +103,12 @@ import { DataTablesModule } from 'angular-datatables';
 
     CreateRutaComponent,
     RutasComponent,
-    RutaUpdateComponent,
+
     CreateDriverComponent,
     SolicitudRegistroTransporteComponent,
     DriversComponent,
-    UpdateDriverComponent,
+
     SignaturesComponent,
-    UpdateSignaturesComponent,
   ],
   imports: [
     CommonModule,

@@ -1,168 +1,294 @@
+import { AdminApiService } from 'src/app/services/admin-api.service';
+import { ExcelService } from '../../services/excel.service';
 import {
-  AfterViewInit,
   Component,
-  Input,
-  OnDestroy,
+  HostListener,
   OnInit,
+  TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable, of, ReplaySubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { ListColumn } from './list-column.model';
-import { ALL_IN_ONE_TABLE_DEMO_DATA } from './all-in-one-table.demo';
-import { UpdateSignaturesComponent } from './update-signatures/update-signatures.component';
-import { Customer } from './customer.model';
-import { fadeInRightAnimation } from '../../@fury/animations/fade-in-right.animation';
-import { fadeInUpAnimation } from '../../@fury/animations/fade-in-up.animation';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
+import { DataTableDirective } from 'angular-datatables';
+import { formatDate } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import * as XLSX from 'xlsx';
+import { env } from 'process';
+declare var require: any;
+const FileSaver = require('file-saver');
 @Component({
   selector: 'app-signatures',
   templateUrl: './signatures.component.html',
   styleUrls: ['./signatures.component.scss'],
-  animations: [fadeInRightAnimation, fadeInUpAnimation],
+  providers: [NgbModal],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SignaturesComponent implements OnInit {
-  subject$: ReplaySubject<Customer[]> = new ReplaySubject<Customer[]>(1);
-  data$: Observable<Customer[]> = this.subject$.asObservable();
-  customers: Customer[];
+  @ViewChild('content', { static: false }) modalDownload: TemplateRef<void>;
+  @ViewChild('contentEdit', { static: false }) modalEdit: TemplateRef<void>;
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  processList: any;
+  processStatus: number;
+  url = environment.apiUrl;
+  httpHeader = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
+  fileName: string;
+  currentDate = formatDate(new Date(), '_ddMMyyyy_Hmmss', 'en');
+  showAdvancedSearch: boolean;
+  dataObjProcessData = {
+    api_key_admin: environment.apiKeyAdmin,
+  };
+  fileList: any;
+  files = {
+    document: '',
+  };
 
-  @Input()
-  columns: ListColumn[] = [
-    { name: 'Checkbox', property: 'checkbox', visible: false },
-    { name: 'Image', property: 'image', visible: true },
-    { name: 'Name', property: 'name', visible: true, isModelProperty: true },
-    {
-      name: 'First Name',
-      property: 'firstName',
-      visible: false,
-      isModelProperty: true,
-    },
-    {
-      name: 'Last Name',
-      property: 'lastName',
-      visible: false,
-      isModelProperty: true,
-    },
-    {
-      name: 'Street',
-      property: 'street',
-      visible: true,
-      isModelProperty: true,
-    },
-    {
-      name: 'Zipcode',
-      property: 'zipcode',
-      visible: true,
-      isModelProperty: true,
-    },
-    { name: 'City', property: 'city', visible: true, isModelProperty: true },
-    {
-      name: 'Phone',
-      property: 'phoneNumber',
-      visible: true,
-      isModelProperty: true,
-    },
-    { name: 'Actions', property: 'actions', visible: true },
-  ] as ListColumn[];
-  pageSize = 10;
-  dataSource: MatTableDataSource<Customer> | null;
+  editForm = new FormGroup({
+    name: new FormControl(''),
+    description: new FormControl(''),
+    year: new FormControl(''),
+    grade: new FormControl(''),
+  });
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private dialog: MatDialog) {}
+  roleOptions = [];
+  yearOptions = ['2021', '2022', '2023', '2024', '2025', '2026'];
+  updateObj = {
+    api_key_admin: '',
+    materia_id: '',
+    nombre_asignatura: '',
+    descripcion: '',
+    anio_escolar: '',
+    grado: '',
+  };
 
-  get visibleColumns() {
-    return this.columns
-      .filter((column) => column.visible)
-      .map((column) => column.property);
-  }
-
-  getData() {
-    return of(
-      ALL_IN_ONE_TABLE_DEMO_DATA.map((customer) => new Customer(customer))
-    );
+  dataDeleteObj = {
+    api_key_admin: '',
+    materia_id: '',
+  };
+  public idAux: any;
+  public responseProcess: any;
+  public driverArr: any;
+  constructor(
+    private adminService: AdminApiService,
+    private http: HttpClient,
+    public dataService: DataService,
+    private authSvc: AuthService,
+    private toastr: ToastrService,
+    private modalService: NgbModal,
+    private excelService: ExcelService
+  ) {
+    this.processStatus = -1;
+    this.fileName = 'Reporte_usuarios' + this.currentDate;
+    this.showAdvancedSearch = false;
   }
 
   ngOnInit(): void {
-    this.getData().subscribe((customers) => {
-      this.subject$.next(customers);
-    });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(filter((data) => !!data)).subscribe((customers) => {
-      this.customers = customers;
-      this.dataSource.data = customers;
-    });
+    this.getAllProcessData();
+    this.getAllSubjects();
+  }
+  filterByStatus(state: number): void {
+    this.processStatus = state;
+    this.showAdvancedSearch = false;
+    this.reloadTable();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-  /*
-  createCustomer() {
-    this.dialog.open(CustomerCreateUpdateComponent).afterClosed().subscribe((customer: Customer) => {
-     
-      if (customer) {
-      
-        this.customers.unshift(new Customer(customer));
-        this.subject$.next(this.customers);
-      }
-    });
-  }
-  */
+  getAllSubjects() {
+    this.dataDeleteObj.api_key_admin = environment.apiKeyAdmin;
 
-  updateCustomer(customer) {
-    this.dialog
-      .open(UpdateSignaturesComponent, {
-        data: customer,
-      })
-      .afterClosed()
-      .subscribe((customer) => {
-        /**
-         * Customer is the updated customer (if the user pressed Save - otherwise it's null)
-         */
-        if (customer) {
-          /**
-           * Here we are updating our local array.
-           * You would probably make an HTTP request here.
-           */
-          const index = this.customers.findIndex(
-            (existingCustomer) => existingCustomer.id === customer.id
-          );
-          this.customers[index] = new Customer(customer);
-          this.subject$.next(this.customers);
+    this.adminService.getGrades(this.dataDeleteObj).subscribe(
+      (result) => {
+        if (result.resultado) {
+          this.responseProcess = result;
+          let grades = this.responseProcess.grados;
+          let arr = [];
+          Object.keys(grades).map(function (key) {
+            arr.push(grades[key]['nombre_grado']);
+            return arr;
+          });
+          this.roleOptions = arr;
         }
-      });
-  }
-
-  deleteCustomer(customer) {
-    /**
-     * Here we are updating our local array.
-     * You would probably make an HTTP request here.
-     */
-    this.customers.splice(
-      this.customers.findIndex(
-        (existingCustomer) => existingCustomer.id === customer.id
-      ),
-      1
+      },
+      (error) => {
+        console.log(error);
+      }
     );
-    this.subject$.next(this.customers);
   }
 
-  onFilterChange(value) {
-    if (!this.dataSource) {
+  private async reloadTable() {
+    const dtIntance = await this.dtElement.dtInstance;
+    dtIntance.ajax.reload();
+  }
+
+  getAllProcessData(): void {
+    const that = this;
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      serverSide: true,
+      processing: true,
+      ordering: false,
+      lengthChange: false,
+      info: false,
+      paging: true,
+      searching: true,
+      ajax: (dataTablesParameters: any, callback) => {
+        that.http
+          .post<any>(
+            this.url + '/get-asignaturas',
+            this.getInputData(dataTablesParameters),
+            this.httpHeader
+          )
+          .subscribe((respProcess) => {
+            // const resp = respProcess.procesos.original;
+            const resp = respProcess.materias.original;
+
+            that.processList = resp.data;
+
+            callback({
+              recordsTotal: resp.recordsTotal,
+              recordsFiltered: resp.recordsFiltered,
+              data: [],
+            });
+          });
+      },
+      // columns: [{ data: 'titulo' }, { data: 'estado' }, { data: 'created_at' }, { data: 'tipo' }, { data: '_id' }],
+      columns: [{ data: 'nombres' }],
+      language: this.dataService.spanishDatatables,
+    };
+  }
+
+  getInputData(dataTable: any): any {
+    dataTable['api_key_admin'] = environment.apiKeyAdmin;
+    dataTable['formato_datatable'] = true;
+    return dataTable;
+  }
+
+  exportExcel(): void {
+    this.excelService.exportAsExcelFile(this.processList, this.fileName);
+  }
+
+  showFilterAdvancedSearch(): void {
+    this.showAdvancedSearch = true;
+  }
+  hideFilterAdvancedSearch(): void {
+    this.showAdvancedSearch = false;
+  }
+
+  showAlert(message, title): void {
+    this.toastr.error(message, title, {
+      toastClass: 'toast-alert-message',
+      tapToDismiss: false,
+      disableTimeOut: true,
+      closeButton: true,
+    });
+  }
+  showSuccess(message, title): void {
+    this.toastr.success(message, title, {
+      toastClass: 'toast-success-message',
+      tapToDismiss: false,
+      disableTimeOut: true,
+      closeButton: true,
+    });
+  }
+
+  openModalDownload(): void {
+    this.modalService.open(this.modalDownload, {
+      centered: true,
+      backdrop: 'static',
+      size: 'md',
+      animation: true,
+      keyboard: false,
+      windowClass: 'download-file',
+      backdropClass: 'modal-backdrop-download-file',
+    });
+  }
+
+  openModalEdit(): void {
+    this.modalService.open(this.modalEdit, {
+      centered: true,
+      backdrop: 'static',
+      size: 'md',
+      animation: true,
+      keyboard: false,
+      windowClass: 'download-file',
+      backdropClass: 'modal-backdrop-download-file',
+    });
+  }
+
+  openEditModal(
+    id: any,
+    nombre: any,
+    descripcion: any,
+    anio: any,
+    grado: any
+  ): void {
+    this.openModalEdit();
+    this.idAux = id;
+    this.editForm.reset({
+      name: nombre,
+      description: descripcion,
+      year: anio,
+      grade: grado,
+    });
+
+    console.log('reseteado', this.editForm);
+  }
+
+  onUpdate(form: any, id: any) {
+    if (form.invalid) {
+      this.showAlert('Campos Vacíos', 'Error');
       return;
     }
-    value = value.trim();
-    value = value.toLowerCase();
-    this.dataSource.filter = value;
+
+    const { name, description, year, grade } = this.editForm.value;
+    this.updateObj.materia_id = this.idAux;
+    this.updateObj.api_key_admin = environment.apiKeyAdmin;
+    this.updateObj.nombre_asignatura = name;
+    this.updateObj.descripcion = description;
+    this.updateObj.anio_escolar = year;
+    this.updateObj.grado = grade;
+
+    this.adminService.updateSubject(this.updateObj).subscribe(
+      (result) => {
+        if (result.resultado == true) {
+          this.reloadTable();
+          this.showSuccess('Datos Actualizados.', 'Listo');
+        } else {
+          this.showAlert(result.mensaje, 'Error');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  ngOnDestroy() {}
+  deleteUset(id: any) {
+    this.dataDeleteObj.api_key_admin = environment.apiKeyAdmin;
+    this.dataDeleteObj.materia_id = id;
+    this.adminService.deleteSubject(this.dataDeleteObj).subscribe(
+      (result) => {
+        if (result.resultado == true) {
+          this.showSuccess('Materia eliminada.', 'Listo');
+          this.reloadTable();
+        } else {
+          this.showAlert(result.mensaje, 'Error');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

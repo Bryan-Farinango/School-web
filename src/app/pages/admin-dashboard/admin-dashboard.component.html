@@ -43,7 +43,7 @@
                         <form
                           class="form-login"
                           [formGroup]="editForm"
-                          (ngSubmit)="onUpdate(f)"
+                          (ngSubmit)="onUpdate(f, process._id)"
                           #f="ngForm"
                         >
                           <div class="login">
@@ -163,7 +163,11 @@
                         "
                         >edit</mat-icon
                       >
-                      <mat-icon style="color: red">delete</mat-icon>
+                      <mat-icon
+                        style="color: red"
+                        (click)="deleteUset(process._id)"
+                        >delete</mat-icon
+                      >
                     </div>
                   </td>
                 </tr>

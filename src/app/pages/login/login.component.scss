@@ -26,7 +26,8 @@
   }
 }
 
-.login-form {
+.login-form-init {
+  padding: 0 !important;
   width: 40%;
   @media (max-width: $md) {
     width: 100%;

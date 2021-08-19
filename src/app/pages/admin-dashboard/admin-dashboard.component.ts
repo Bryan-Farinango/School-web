@@ -18,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import * as XLSX from 'xlsx';
+import { env } from 'process';
 declare var require: any;
 const FileSaver = require('file-saver');
 @Component({
@@ -59,8 +60,22 @@ export class AdminDashboardComponent implements OnInit {
     phone: new FormControl(''),
   });
 
-  roleOptions = ['Administrador', 'Profesor'];
+  roleOptions = ['Administrador', 'Profesor', 'Padre'];
 
+  updateObj = {
+    api_key_admin: '',
+    cuenta_id: '',
+    nombres: '',
+    apellidos: '',
+    rol: '',
+    telefono: '',
+  };
+
+  dataDeleteObj = {
+    api_key_admin: '',
+    cuenta_id: '',
+  };
+  public idAux: any;
   constructor(
     private adminService: AdminApiService,
     private http: HttpClient,
@@ -195,7 +210,7 @@ export class AdminDashboardComponent implements OnInit {
     telefono: any
   ): void {
     this.openModalEdit();
-
+    this.idAux = id;
     this.editForm.reset({
       name: nombres,
       lastName: apellidos,
@@ -204,12 +219,50 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  onUpdate(form: any) {
+  onUpdate(form: any, id: any) {
     if (form.invalid) {
       this.showAlert('Campos Vacíos', 'Error');
       return;
     }
 
-    this.reloadTable();
+    const { name, lastName, rol, phone } = this.editForm.value;
+    this.updateObj.cuenta_id = this.idAux;
+    this.updateObj.api_key_admin = environment.apiKeyAdmin;
+    this.updateObj.nombres = name;
+    this.updateObj.apellidos = lastName;
+    this.updateObj.rol = rol;
+    this.updateObj.telefono = phone;
+
+    this.adminService.editUsers(this.updateObj).subscribe(
+      (result) => {
+        if (result.resultado == true) {
+          this.reloadTable();
+          this.showSuccess('Datos Actualizados.', 'Listo');
+        } else {
+          this.showAlert(result.mensaje, 'Error');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  deleteUset(id: any) {
+    this.dataDeleteObj.api_key_admin = environment.apiKeyAdmin;
+    this.dataDeleteObj.cuenta_id = id;
+    this.adminService.deleteUser(this.dataDeleteObj).subscribe(
+      (result) => {
+        if (result.resultado == true) {
+          this.showSuccess('Usuario eliminado.', 'Listo');
+          this.reloadTable();
+        } else {
+          this.showAlert(result.mensaje, 'Error');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

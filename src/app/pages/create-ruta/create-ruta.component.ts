@@ -28,6 +28,7 @@ export class CreateRutaComponent implements OnInit {
     sector_1: '',
     sector_2: '',
     sector_3: '',
+    transportista_id: '',
   };
   rutaForm = new FormGroup({
     title: new FormControl(''),
@@ -87,6 +88,7 @@ export class CreateRutaComponent implements OnInit {
     this.dataObjRegister.sector_1 = address1;
     this.dataObjRegister.sector_2 = address2;
     this.dataObjRegister.sector_3 = address3;
+    this.dataObjRegister.transportista_id = 'empty';
 
     try {
       const ruta = this.adminService.createRuta(this.dataObjRegister).subscribe(
