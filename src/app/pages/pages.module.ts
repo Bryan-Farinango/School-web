@@ -81,7 +81,12 @@ import { SignaturesComponent } from './signatures/signatures.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { DataTablesModule } from 'angular-datatables';
-
+import { HomeUserComponent } from './user-page/home-user/home-user.component';
+import { HomeTeacherComponent } from './teacher-page/home-teacher/home-teacher.component';
+// For MDB Angular Free
+import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { BoyInscriptionComponent } from './user-page/boy-inscription/boy-inscription.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -109,8 +114,18 @@ import { DataTablesModule } from 'angular-datatables';
     DriversComponent,
 
     SignaturesComponent,
+
+    HomeUserComponent,
+
+    HomeTeacherComponent,
+
+    BoyInscriptionComponent,
   ],
   imports: [
+    MDBBootstrapModule,
+    ButtonsModule,
+    WavesModule,
+    NavbarModule,
     CommonModule,
     ComponentsModule,
     AppRoutingModule,

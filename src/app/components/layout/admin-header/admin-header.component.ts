@@ -23,7 +23,7 @@ export class AdminHeaderComponent implements OnInit {
   async onLogout() {
     try {
       await this.authSvc.logout();
-
+      localStorage.clear();
       this.router.navigate(['/login']);
     } catch (error) {}
   }

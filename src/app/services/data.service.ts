@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   spanishDatatables: any;
+  public userId: any;
+  public matricula: boolean;
   constructor() {
     this.spanishDatatables = {
       processing:
@@ -30,5 +32,6 @@ export class DataService {
         sortDescending: ': Activar para ordenar la tabla en orden descendente',
       },
     };
+    this.matricula = false;
   }
 }

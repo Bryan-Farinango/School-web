@@ -31,6 +31,9 @@ import { CreateDriverComponent } from './pages/create-driver/create-driver.compo
 import { SolicitudRegistroTransporteComponent } from './pages/solicitud-registro-transporte/solicitud-registro-transporte.component';
 import { DriversComponent } from './pages/drivers/drivers.component';
 import { SignaturesComponent } from './pages/signatures/signatures.component';
+import { HomeUserComponent } from './pages/user-page/home-user/home-user.component';
+import { HomeTeacherComponent } from './pages/teacher-page/home-teacher/home-teacher.component';
+import { BoyInscriptionComponent } from './pages/user-page/boy-inscription/boy-inscription.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -110,6 +113,22 @@ const routes: Routes = [
         component: SignaturesComponent, // child route component that the router renders
       },
     ],
+  },
+  {
+    path: 'user-page',
+    component: HomeUserComponent,
+    canActivate: [AngularFireAuthGuard, RegisterGuardGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      {
+        path: 'create-inscription', // child route path
+        component: BoyInscriptionComponent, // child route component that the router renders
+      },
+    ],
+  },
+  {
+    path: 'teacher-page',
+    component: HomeTeacherComponent,
   },
   {
     path: "home/error-404'",

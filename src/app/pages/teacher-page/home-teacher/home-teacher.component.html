@@ -1,0 +1,33 @@
+<mat-sidenav-container>
+  <mat-sidenav opened="true" mode="side" style="position: fixed">
+    <fury-scrollbar class="sidenav-items" fxFlex="auto">
+      <div class="sidenav-user">
+        <img
+          class="sidenav-user-image"
+          src="../../../assets/images/general/perfil-default.png"
+        />
+
+        <h5 class="sidenav-user-email">profesor@example.com</h5>
+
+        <div class="sidenav-user-icons" fxLayout="row">
+          <a mat-icon-button>
+            <mat-icon>assignment</mat-icon>
+          </a>
+          <a mat-icon-button>
+            <mat-icon>date_range</mat-icon>
+          </a>
+          <a mat-icon-button>
+            <mat-icon>exit_to_app</mat-icon>
+          </a>
+        </div>
+      </div>
+      <app-teacher-menu></app-teacher-menu>
+    </fury-scrollbar>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-admin-header></app-admin-header>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

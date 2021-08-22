@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AdminMenuComponent } from './admin/admin-menu/admin-menu.component';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { TeacherMenuComponent } from './teacher/teacher-menu/teacher-menu.component';
 @NgModule({
   declarations: [
     LayoutLoginHeaderComponent,
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     AccionesFirebaseComponent,
     AdminHeaderComponent,
     AdminMenuComponent,
+    TeacherMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +43,7 @@ import { RouterModule } from '@angular/router';
     LayoutLoginHeaderComponent,
     AdminHeaderComponent,
     AdminMenuComponent,
+    TeacherMenuComponent,
   ],
 })
 export class ComponentsModule {}

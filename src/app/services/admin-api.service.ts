@@ -231,6 +231,78 @@ export class AdminApiService {
       )
       .pipe(retry(1), catchError(this.processError));
   }
+
+  //transportistas
+  updateDriver(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/update-transportistas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  deleteDriver(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/delete-transportistas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  loginUserMongo(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/login-user',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getUserInfo(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/user-info',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  //students
+  createStudent(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/add-estudiantes',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getStudents(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-estudiantes',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  deleteSolicitud(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/del-solicitud-estudiante',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {
