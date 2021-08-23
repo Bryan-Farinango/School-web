@@ -35,6 +35,7 @@ import { HomeUserComponent } from './pages/user-page/home-user/home-user.compone
 import { HomeTeacherComponent } from './pages/teacher-page/home-teacher/home-teacher.component';
 import { BoyInscriptionComponent } from './pages/user-page/boy-inscription/boy-inscription.component';
 import { AdminStudentsComponent } from './pages/admin-students/admin-students.component';
+import { StudentsTeacherComponent } from './pages/teacher-page/students-teacher/students-teacher.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -134,6 +135,14 @@ const routes: Routes = [
   {
     path: 'teacher-page',
     component: HomeTeacherComponent,
+    canActivate: [AngularFireAuthGuard, RegisterGuardGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      {
+        path: 'techer-students', // child route path
+        component: StudentsTeacherComponent, // child route component that the router renders
+      },
+    ],
   },
   {
     path: "home/error-404'",
