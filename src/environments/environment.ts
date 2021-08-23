@@ -17,6 +17,8 @@ export const environment = {
     measurementId: 'G-GZJVPK15GF',
   },
 
+  topicNotification: ['Asistencia', 'General', 'Noticias'],
+
   //credentials for drivers firebase
   driverFirebaseApiKey: 'AIzaSyAtp_1k7RgfaMiPWuPA6fQYVxEUnJ2-c20',
 };

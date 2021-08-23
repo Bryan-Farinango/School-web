@@ -88,3 +88,52 @@ body {
   font-weight: 700;
   margin-top: 40px;
 }
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+  z-index: 99999 !important;
+}
+
+.mat-form-field {
+  display: block;
+  position: relative;
+  text-align: left;
+}
+
+::ng-deep .mat-form-field {
+  margin-right: 20px !important;
+  margin-top: 25px !important;
+  margin-left: 20px !important;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.first-button {
+  background-color: #7ed957;
+  color: white;
+  font-family: 'Myriad Pro Bold';
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 23px;
+  width: 120px;
+  height: 50px;
+}
+
+.second-button {
+  margin-left: 10px;
+  border: none;
+  background-color: lightgray;
+  color: white;
+  font-family: 'Myriad Pro Bold';
+  font-weight: 700;
+  font-size: 16px;
+  width: 120px;
+  height: 50px;
+  border-radius: 23px;
+}

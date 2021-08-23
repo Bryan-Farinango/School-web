@@ -89,6 +89,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BoyInscriptionComponent } from './user-page/boy-inscription/boy-inscription.component';
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
 import { StudentsTeacherComponent } from './teacher-page/students-teacher/students-teacher.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -179,7 +180,8 @@ import { StudentsTeacherComponent } from './teacher-page/students-teacher/studen
     ToastrModule.forRoot(),
     DataTablesModule,
   ],
-  providers: [RegisterGuardGuard, VerificationGuardGuard],
+
+  providers: [RegisterGuardGuard, VerificationGuardGuard, DatePipe],
   exports: [
     MatInputModule,
     MatTabsModule,

@@ -51,6 +51,105 @@
   <mat-divider></mat-divider>
   <div class="row">
     <div class="col-md-4 col-xl-3" *ngFor="let student of responseStudents">
+      <ng-template
+        #contentSend
+        let-c="close"
+        let-d="dismiss"
+        style="z-index: 9999 !important"
+      >
+        <div class="modal-header">
+          <h2>Enviar comunicado</h2>
+        </div>
+        <div class="modal-body1">
+          <div class="container-form login-form">
+            <form
+              class="form-login"
+              [formGroup]="notificationForm"
+              (ngSubmit)="sendNotification(f)"
+              #f="ngForm"
+            >
+              <div class="login">
+                <div class="mb-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Título del comunicado</mat-label>
+                    <input
+                      type="text"
+                      name="nombre"
+                      formControlName="title"
+                      matInput
+                      #fieldEmail
+                      required
+                      placeholder="Título"
+                      maxlength="50"
+                    />
+
+                    <mat-icon matSuffix>menu_book</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="mb-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Tema</mat-label>
+                    <mat-select formControlName="topic" required>
+                      <mat-option
+                        *ngFor="let option of topicOption"
+                        [value]="option"
+                        >{{ option }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="mb-6">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker1"
+                      formControlName="date"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker1"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="mb-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Mensaje</mat-label>
+                    <textarea
+                      matInput
+                      formControlName="message"
+                      style="height: 70px"
+                      required
+                    ></textarea>
+
+                    <mat-icon matSuffix>description</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="modal-buttons" ngbAutofocus>
+                  <button
+                    class="first-button"
+                    color="primary"
+                    type="submit"
+                    mat-flat-button
+                    (click)="d('Cross click')"
+                  >
+                    Actualizar
+                  </button>
+                  <button
+                    class="second-button"
+                    type="button"
+                    (click)="d('Cross click')"
+                    (click)="notificationForm.reset()"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-template>
       <div class="card bg-c-blue order-card">
         <div class="card-block">
           <span class="m-b-20" style="font-weight: 500">
@@ -64,7 +163,11 @@
             <span> {{ student.edad }} años</span>
           </h2>
           <p class="m-b-0">
-            <button mat-icon-button matTooltip="Enviar Comunicado">
+            <button
+              mat-icon-button
+              matTooltip="Enviar Comunicado"
+              (click)="openNotification(student._id, student.usuario_id)"
+            >
               <mat-icon>email</mat-icon>
             </button>
             <span class="f-right"><mat-icon>badge</mat-icon> </span>
