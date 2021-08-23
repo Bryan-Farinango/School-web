@@ -16,6 +16,7 @@
                   <th class="text-center">Descripción</th>
                   <th class="text-center">Año Escolar</th>
                   <th class="text-center">Grado</th>
+                  <th class="text-center">Profesor</th>
 
                   <th>&nbsp;</th>
                 </tr>
@@ -110,7 +111,27 @@
                                 </option>
                               </select>
                             </div>
-
+                            <div class="mb-3">
+                              <label class="form-label"
+                                >Asigna un profesor</label
+                              >
+                              <select
+                                class="form-select"
+                                required
+                                formControlName="teacher"
+                                placeholder="Aigna un profesor"
+                              >
+                                <option
+                                  *ngFor="let option of responseTeacher"
+                                  [selected]="
+                                    option.nombres === process.nombre_profesor
+                                  "
+                                  [value]="option._id"
+                                >
+                                  {{ option.nombres }}
+                                </option>
+                              </select>
+                            </div>
                             <button
                               class="login-button"
                               color="primary"
@@ -142,8 +163,11 @@
                   <td width="10%" class="text-center">
                     {{ process.anio_escolar }}
                   </td>
-                  <td width="30%" class="text-center">
+                  <td width="20%" class="text-center">
                     {{ process.nombre_grado }}
+                  </td>
+                  <td width="20%" class="text-center">
+                    {{ process.nombre_profesor }}
                   </td>
 
                   <td width="10%" class="justify-content-center">

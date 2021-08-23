@@ -34,6 +34,7 @@ import { SignaturesComponent } from './pages/signatures/signatures.component';
 import { HomeUserComponent } from './pages/user-page/home-user/home-user.component';
 import { HomeTeacherComponent } from './pages/teacher-page/home-teacher/home-teacher.component';
 import { BoyInscriptionComponent } from './pages/user-page/boy-inscription/boy-inscription.component';
+import { AdminStudentsComponent } from './pages/admin-students/admin-students.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -111,6 +112,10 @@ const routes: Routes = [
       {
         path: 'signatures', // child route path
         component: SignaturesComponent, // child route component that the router renders
+      },
+      {
+        path: 'students-request', // child route path
+        component: AdminStudentsComponent, // child route component that the router renders
       },
     ],
   },

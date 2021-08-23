@@ -58,6 +58,7 @@ export class SignaturesComponent implements OnInit {
     description: new FormControl(''),
     year: new FormControl(''),
     grade: new FormControl(''),
+    teacher: new FormControl(''),
   });
 
   roleOptions = [];
@@ -69,6 +70,7 @@ export class SignaturesComponent implements OnInit {
     descripcion: '',
     anio_escolar: '',
     grado: '',
+    usuario_id: '',
   };
 
   dataDeleteObj = {
@@ -77,6 +79,7 @@ export class SignaturesComponent implements OnInit {
   };
   public idAux: any;
   public responseProcess: any;
+  public responseTeacher: any;
   public driverArr: any;
   constructor(
     private adminService: AdminApiService,
@@ -116,6 +119,18 @@ export class SignaturesComponent implements OnInit {
             return arr;
           });
           this.roleOptions = arr;
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    this.adminService.getProfesor(this.dataDeleteObj).subscribe(
+      (result) => {
+        if (result.resultado) {
+          this.responseTeacher = result.profesores;
+          console.log(this.responseTeacher);
         }
       },
       (error) => {
@@ -251,14 +266,14 @@ export class SignaturesComponent implements OnInit {
       return;
     }
 
-    const { name, description, year, grade } = this.editForm.value;
+    const { name, description, year, grade, teacher } = this.editForm.value;
     this.updateObj.materia_id = this.idAux;
     this.updateObj.api_key_admin = environment.apiKeyAdmin;
     this.updateObj.nombre_asignatura = name;
     this.updateObj.descripcion = description;
     this.updateObj.anio_escolar = year;
     this.updateObj.grado = grade;
-
+    this.updateObj.usuario_id = teacher;
     this.adminService.updateSubject(this.updateObj).subscribe(
       (result) => {
         if (result.resultado == true) {

@@ -303,6 +303,46 @@ export class AdminApiService {
       )
       .pipe(retry(1), catchError(this.processError));
   }
+
+  getStudentSolicitudes(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-solicitud-estudiante',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  aprobarStudent(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/aprobar-estudiante',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  rechazarStudent(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/rechazar-estudiante',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getProfesor(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-profesor',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

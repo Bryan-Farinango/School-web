@@ -87,6 +87,7 @@ import { HomeTeacherComponent } from './teacher-page/home-teacher/home-teacher.c
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BoyInscriptionComponent } from './user-page/boy-inscription/boy-inscription.component';
+import { AdminStudentsComponent } from './admin-students/admin-students.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -120,6 +121,8 @@ import { BoyInscriptionComponent } from './user-page/boy-inscription/boy-inscrip
     HomeTeacherComponent,
 
     BoyInscriptionComponent,
+
+    AdminStudentsComponent,
   ],
   imports: [
     MDBBootstrapModule,
