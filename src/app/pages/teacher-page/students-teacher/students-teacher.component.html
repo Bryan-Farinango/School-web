@@ -88,6 +88,18 @@
                 </div>
                 <div class="mb-6">
                   <mat-form-field appearance="outline">
+                    <mat-label>Materia</mat-label>
+                    <mat-select formControlName="subject" required>
+                      <mat-option
+                        *ngFor="let option of responseMaterias"
+                        [value]="option.materia_id"
+                        >{{ option.nombre_asignatura }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="mb-6">
+                  <mat-form-field appearance="outline">
                     <mat-label>Tema</mat-label>
                     <mat-select formControlName="topic" required>
                       <mat-option
@@ -134,7 +146,7 @@
                     mat-flat-button
                     (click)="d('Cross click')"
                   >
-                    Actualizar
+                    Enviar
                   </button>
                   <button
                     class="second-button"

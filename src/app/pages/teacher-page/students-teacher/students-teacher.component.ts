@@ -25,6 +25,11 @@ export class StudentsTeacherComponent implements OnInit {
     grado_id: '',
   };
 
+  dataObjGetSubjFromEst = {
+    estudiante_id: '',
+    usuario_id: '',
+  };
+
   dataObjNotification = {
     titulo: '',
     tema: '',
@@ -32,11 +37,13 @@ export class StudentsTeacherComponent implements OnInit {
     mensaje: '',
     estudiante_id: '',
     usuario_id: '',
+    materia_id: '',
   };
   public topicOption: any;
   public responseGrades: any;
   public responseSubjects: any;
   public responseStudents: any;
+  responseMaterias = [];
   gradeForm = new FormGroup({
     grade: new FormControl(''),
     subject: new FormControl(''),
@@ -48,6 +55,7 @@ export class StudentsTeacherComponent implements OnInit {
   notificationForm = new FormGroup({
     title: new FormControl(''),
     topic: new FormControl(''),
+    subject: new FormControl(''),
     date: new FormControl(new Date().toISOString()),
     message: new FormControl(''),
   });
@@ -111,14 +119,13 @@ export class StudentsTeacherComponent implements OnInit {
       (result) => {
         if (result.resultado == true) {
           this.responseStudents = result.estudiantes;
-          console.log(
-            'seleccionado: ',
-            grade,
-            subject,
-            this.dataObjEst,
-            'response: ',
-            this.responseStudents
-          );
+          /*
+          this.responseStudents.forEach((myObject) => {
+            this.responseMaterias.push(myObject.materias);
+          });
+          */
+
+          console.log(this.responseStudents);
         }
       },
       (error) => {
@@ -159,6 +166,22 @@ export class StudentsTeacherComponent implements OnInit {
   openNotification(estudianteId: any, usuarioId: any) {
     this.dataObjNotification.estudiante_id = estudianteId;
     this.dataObjNotification.usuario_id = usuarioId;
+    this.dataObjGetSubjFromEst.estudiante_id = estudianteId;
+    this.dataObjGetSubjFromEst.usuario_id = localStorage.getItem('usuario_id');
+    this.adminService
+      .getSubjectFromStudent(this.dataObjGetSubjFromEst)
+      .subscribe(
+        (result) => {
+          if (result.resultado == true) {
+            this.responseMaterias = result.materias;
+            console.log('materias', this.responseMaterias);
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
     this.openModalEdit();
   }
 
@@ -171,7 +194,13 @@ export class StudentsTeacherComponent implements OnInit {
       return;
     }
 
-    const { title, topic, date, message } = this.notificationForm.value;
+    const {
+      title,
+      topic,
+      date,
+      message,
+      subject,
+    } = this.notificationForm.value;
 
     this.dataObjNotification.titulo = title;
     this.dataObjNotification.tema = topic;
@@ -179,8 +208,24 @@ export class StudentsTeacherComponent implements OnInit {
     this.dateAux = this.datepipe.transform(this.dateAux, 'yyyy-MM-dd');
     this.dataObjNotification.fecha = this.dateAux;
     this.dataObjNotification.mensaje = message;
+    this.dataObjNotification.materia_id = subject;
 
-    console.log('listo pa enviar: ', this.dataObjNotification, 'date: ', date);
+    //console.log('listo pa enviar: ', this.dataObjNotification, 'date: ', date);
+
+    this.adminService.sendNotification(this.dataObjNotification).subscribe(
+      (result) => {
+        if (result.resultado == true) {
+          this.showSuccess('Notificación enviada.', 'Listo');
+        } else {
+          this.showAlert(result.mensaje, 'Error');
+        }
+      },
+      (error) => {
+        console.log(error);
+        this.showAlert(error, 'Error');
+      }
+    );
+
     this.notificationForm.get('title').reset();
     this.notificationForm.get('topic').reset();
     this.notificationForm.get('message').reset();

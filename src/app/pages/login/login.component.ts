@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
                 } else if (result.objeto.rol === 'Profesor') {
                   this.router.navigate(['/teacher-page']);
                 } else if (result.objeto.rol === 'Padre') {
-                  this.router.navigate(['/user-page']);
+                  this.router.navigate(['/user-page/create-inscription']);
                 }
               } else {
                 this.showAlert(result.mensaje, 'Error');
