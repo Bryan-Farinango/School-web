@@ -39,6 +39,10 @@ export class StudentsTeacherComponent implements OnInit {
     usuario_id: '',
     materia_id: '',
   };
+  dataObjGetMateriaFromTeacher = {
+    grado_id: '',
+    usuario_id: '',
+  };
   public topicOption: any;
   public responseGrades: any;
   public responseSubjects: any;
@@ -106,7 +110,12 @@ export class StudentsTeacherComponent implements OnInit {
     const { subject } = this.materiaForm.value;
 
     this.dataObjEst.grado_id = grade;
-    this.dataObjEst.asignatura_id = subject;
+
+    if (this.dataObjEst.asignatura_id == 'todos') {
+      this.dataObjEst.asignatura_id = 'todos';
+    } else {
+      this.dataObjEst.asignatura_id = subject;
+    }
 
     if (this.dataObjEst.grado_id == '') {
       this.dataObjEst.grado_id = 'todos';
@@ -229,5 +238,38 @@ export class StudentsTeacherComponent implements OnInit {
     this.notificationForm.get('title').reset();
     this.notificationForm.get('topic').reset();
     this.notificationForm.get('message').reset();
+  }
+
+  onChange(deviceValue: any) {
+    this.dataObjEst.asignatura_id = 'todos';
+    const event = deviceValue;
+    if (event === 'todos') {
+      return;
+    }
+    //this.materiaForm.get('subject').reset();
+    this.dataObjGetMateriaFromTeacher.grado_id = event;
+    this.dataObjGetMateriaFromTeacher.usuario_id = localStorage.getItem(
+      'usuario_id'
+    );
+
+    this.adminService
+      .getMateriaFromGradeAndTeacher(this.dataObjGetMateriaFromTeacher)
+      .subscribe(
+        (result) => {
+          if (result.resultado) {
+            this.responseSubjects = result.materias;
+            if (this.responseSubjects.length == 0) {
+              this.showAlert(
+                'No existe Materias para el grado seleccionado.',
+                'Error'
+              );
+            } else {
+            }
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

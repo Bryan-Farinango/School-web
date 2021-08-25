@@ -20,7 +20,11 @@
       >Grado Escolar:</span
     >
     <form [formGroup]="gradeForm" #f="ngForm">
-      <select class="form-select" formControlName="grade">
+      <select
+        class="form-select"
+        formControlName="grade"
+        (ngModelChange)="onChange($event)"
+      >
         <option value="todos">Todos</option>
         <option *ngFor="let grade of responseGrades" [value]="grade.grado_id">
           {{ grade.nombre_grado }}
@@ -37,9 +41,12 @@
       >Materia :</span
     >
     <form [formGroup]="materiaForm" #f="ngForm">
-      <select class="form-select" formControlName="subject">
+      <select class="form-select" formControlName="subject" [selected]="todos">
         <option value="todos">Todos</option>
-        <option *ngFor="let subject of responseSubjects" [value]="subject._id">
+        <option
+          *ngFor="let subject of responseSubjects"
+          [value]="subject.asignatura_id"
+        >
           {{ subject.nombre_asignatura }}
         </option>
       </select>

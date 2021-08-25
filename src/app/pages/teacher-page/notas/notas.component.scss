@@ -1,0 +1,58 @@
+@import '../../../../assets/styles/styles.scss';
+
+.header-notas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem;
+  .header-title {
+    width: 210px;
+    height: 65px;
+    padding-bottom: 3px;
+    border-radius: 9px;
+    display: flex;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .header-button {
+    margin-right: 2rem;
+    background-color: #7ed957;
+    color: white;
+    font-family: 'Myriad Pro Bold';
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 23px;
+    width: 180px;
+    height: 50px;
+    border: none;
+  }
+
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+    width: 700px !important;
+  }
+}
+.cerrar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+button:disabled {
+  background-color: lightgray !important;
+}

@@ -1,0 +1,215 @@
+<div>
+  <div class="header-notas">
+    <span class="header-title">Registra Calificaciones</span>
+    <button (click)="onCreate()" class="header-button">
+      Ingresar registro
+    </button>
+    <ng-template
+      #contentCreate
+      let-c="close"
+      let-d="dismiss"
+      style="z-index: 9999 !important"
+    >
+      <div class="card">
+        <div class="cerrar">
+          <mat-icon
+            style="margin: 1rem 1rem 0 0; cursor: pointer"
+            (click)="d('Cross click')"
+            >cancel</mat-icon
+          >
+        </div>
+
+        <mat-vertical-stepper
+          #verticalStepper="matVerticalStepper"
+          [linear]="true"
+        >
+          <mat-step [stepControl]="verticalAccountFormGroup">
+            <form [formGroup]="verticalAccountFormGroup">
+              <ng-template matStepLabel>Datos Generales. </ng-template>
+
+              <div class="heading"></div>
+              <div class="subheading">Ingresa los datos requeridos.</div>
+
+              <div class="content" fxLayout="column" fxLayoutGap="8px">
+                <mat-form-field appearance="outline">
+                  <mat-label>Grado</mat-label>
+                  <mat-select formControlName="grade" required>
+                    <mat-option
+                      *ngFor="let grade of responseGrades"
+                      [value]="grade.grado_id"
+                      >{{ grade.nombre_grado }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Fecha</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker1"
+                    formControlName="date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Desripción</mat-label>
+                  <textarea
+                    matInput
+                    formControlName="description"
+                    style="height: 70px"
+                    required
+                  ></textarea>
+
+                  <mat-icon matSuffix>description</mat-icon>
+                </mat-form-field>
+              </div>
+
+              <div
+                class="actions"
+                fxLayout="row"
+                fxLayoutAlign="end center"
+                fxLayoutGap="8px"
+              >
+                <button
+                  (click)="verticalStepper.reset()"
+                  [disabled]="verticalAccountFormGroup.pristine"
+                  mat-button
+                  type="button"
+                  class="button-color"
+                  style="background-color: lightgray; color: white"
+                >
+                  RESETEAR
+                </button>
+                <button
+                  [disabled]="verticalAccountFormGroup.invalid"
+                  mat-raised-button
+                  matStepperNext
+                  class="button-color"
+                  style="color: white; background-color: #7ed957"
+                  (click)="fistQuery()"
+                >
+                  SIGUIENTE
+                </button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="verticalPasswordFormGroup">
+            <form [formGroup]="verticalPasswordFormGroup">
+              <ng-template matStepLabel>Datos Académicos</ng-template>
+
+              <div class="content" fxLayout="column" fxLayoutGap="8px">
+                <mat-form-field appearance="outline">
+                  <mat-label>Materias</mat-label>
+                  <mat-select
+                    formControlName="subject"
+                    required
+                    (ngModelChange)="onChange($event)"
+                  >
+                    <mat-option
+                      *ngFor="let subject of responseSubjects"
+                      [value]="subject.asignatura_id"
+                      >{{ subject.nombre_asignatura }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Estudiante</mat-label>
+                  <mat-select formControlName="student" required>
+                    <mat-option
+                      *ngFor="let student of responseStudents"
+                      [value]="student._id"
+                      >{{ student.nombres }} {{ student.apellidos }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div
+                class="actions"
+                fxLayout="row"
+                fxLayoutAlign="end center"
+                fxLayoutGap="8px"
+              >
+                <button
+                  color="primary"
+                  mat-button
+                  matStepperPrevious
+                  type="button"
+                  class="button-color"
+                  style="color: white; background-color: #7ed957"
+                >
+                  ANTERIOR
+                </button>
+                <button
+                  [disabled]="verticalPasswordFormGroup.invalid"
+                  color="primary"
+                  mat-raised-button
+                  matStepperNext
+                  class="button-color"
+                  style="color: white"
+                >
+                  SIGUIENTE
+                </button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="verticalConfirmFormGroup">
+            <form [formGroup]="verticalConfirmFormGroup">
+              <ng-template matStepLabel>Confirmación</ng-template>
+
+              <div class="subheading">
+                Confirma el registro de calificaciones.
+              </div>
+
+              <div class="content" fxLayout="column" fxLayoutGap="8px">
+                <mat-checkbox class="checkbox" formControlName="terms">
+                  Acepto que los datos Ingresados son correctos. *
+                </mat-checkbox>
+              </div>
+
+              <div
+                class="actions"
+                fxLayout="row"
+                fxLayoutAlign="end center"
+                fxLayoutGap="8px"
+              >
+                <button
+                  color="primary"
+                  mat-button
+                  matStepperPrevious
+                  type="button"
+                  class="button-color"
+                  style="color: white"
+                >
+                  ANTERIOR
+                </button>
+                <button
+                  (click)="submit()"
+                  [disabled]="verticalConfirmFormGroup.invalid"
+                  color="primary"
+                  mat-raised-button
+                  matStepperNext
+                  class="button-color"
+                  style="color: white"
+                  (click)="d('Cross click')"
+                  (click)="verticalStepper.reset()"
+                >
+                  CREAR REGISTRO
+                </button>
+              </div>
+            </form>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </ng-template>
+  </div>
+  <mat-divider></mat-divider>
+</div>

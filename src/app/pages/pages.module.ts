@@ -91,6 +91,7 @@ import { AdminStudentsComponent } from './admin-students/admin-students.componen
 import { StudentsTeacherComponent } from './teacher-page/students-teacher/students-teacher.component';
 import { DatePipe } from '@angular/common';
 import { NotificationsComponent } from './user-page/notifications/notifications.component';
+import { NotasComponent } from './teacher-page/notas/notas.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -130,6 +131,8 @@ import { NotificationsComponent } from './user-page/notifications/notifications.
     StudentsTeacherComponent,
 
     NotificationsComponent,
+
+    NotasComponent,
   ],
   imports: [
     MDBBootstrapModule,

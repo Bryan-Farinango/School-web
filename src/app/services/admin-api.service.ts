@@ -404,6 +404,17 @@ export class AdminApiService {
       .pipe(retry(1), catchError(this.processError));
   }
 
+  //notas
+  getMateriaFromGradeAndTeacher(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-materia-from-teacher',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

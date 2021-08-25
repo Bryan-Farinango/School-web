@@ -37,6 +37,7 @@ import { BoyInscriptionComponent } from './pages/user-page/boy-inscription/boy-i
 import { AdminStudentsComponent } from './pages/admin-students/admin-students.component';
 import { StudentsTeacherComponent } from './pages/teacher-page/students-teacher/students-teacher.component';
 import { NotificationsComponent } from './pages/user-page/notifications/notifications.component';
+import { NotasComponent } from './pages/teacher-page/notas/notas.component';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -146,6 +147,10 @@ const routes: Routes = [
       {
         path: 'techer-students', // child route path
         component: StudentsTeacherComponent, // child route component that the router renders
+      },
+      {
+        path: 'teacher-notes', // child route path
+        component: NotasComponent, // child route component that the router renders
       },
     ],
   },
