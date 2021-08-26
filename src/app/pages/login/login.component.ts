@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
                 if (result.objeto.rol === 'Administrador') {
                   this.router.navigate(['/home']);
                 } else if (result.objeto.rol === 'Profesor') {
-                  this.router.navigate(['/teacher-page']);
+                  this.router.navigate(['/teacher-page/techer-students']);
                 } else if (result.objeto.rol === 'Padre') {
                   this.router.navigate(['/user-page/create-inscription']);
                 }

@@ -18,7 +18,7 @@ export const environment = {
   },
 
   topicNotification: ['Asistencia', 'General', 'Noticias'],
-
+  quimestreOption: ['Primer Quimestre', 'Segundo Quimestre'],
   //credentials for drivers firebase
   driverFirebaseApiKey: 'AIzaSyAtp_1k7RgfaMiPWuPA6fQYVxEUnJ2-c20',
 };

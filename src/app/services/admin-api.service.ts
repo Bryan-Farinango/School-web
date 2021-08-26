@@ -415,6 +415,54 @@ export class AdminApiService {
       .pipe(retry(1), catchError(this.processError));
   }
 
+  getMateriasFromOnlyTeacher(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-materia-from-only-teacher',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+  createRegistroNotas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/create-registro-notas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getNotas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-notas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  delNotas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/del-notas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  closeNotas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/close-notas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {
