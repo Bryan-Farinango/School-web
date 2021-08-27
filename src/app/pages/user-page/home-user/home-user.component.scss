@@ -1,6 +1,7 @@
 mat-toolbar {
   background-color: rgb(252, 252, 252);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 9999;
 }
 
 .mat-button-toggle-focus-overlay {

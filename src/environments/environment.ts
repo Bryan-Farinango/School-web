@@ -16,7 +16,7 @@ export const environment = {
     appId: '1:161151247861:web:ce4d1a8f0f6a6d737e6cbc',
     measurementId: 'G-GZJVPK15GF',
   },
-
+  parcialOptions: ['Parcial 1', 'Parcial 2', 'Parcial 3'],
   topicNotification: ['Asistencia', 'General', 'Noticias'],
   quimestreOption: ['Primer Quimestre', 'Segundo Quimestre'],
   //credentials for drivers firebase

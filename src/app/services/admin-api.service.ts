@@ -463,6 +463,36 @@ export class AdminApiService {
       )
       .pipe(retry(1), catchError(this.processError));
   }
+
+  getNotasByParcial(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-notas-by-parcial',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  updateNotas(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/update-notas',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  updateNotaQuimestral(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/update-nota-final',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {
