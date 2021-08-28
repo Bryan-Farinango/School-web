@@ -93,6 +93,7 @@ import { DatePipe } from '@angular/common';
 import { NotificationsComponent } from './user-page/notifications/notifications.component';
 import { NotasComponent } from './teacher-page/notas/notas.component';
 import { CalificacionesComponent } from './user-page/calificaciones/calificaciones.component';
+import { UserTransporteComponent } from './user-page/user-transporte/user-transporte.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -136,6 +137,8 @@ import { CalificacionesComponent } from './user-page/calificaciones/calificacion
     NotasComponent,
 
     CalificacionesComponent,
+
+    UserTransporteComponent,
   ],
   imports: [
     MDBBootstrapModule,

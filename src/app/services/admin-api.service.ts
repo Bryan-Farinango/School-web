@@ -493,6 +493,17 @@ export class AdminApiService {
       )
       .pipe(retry(1), catchError(this.processError));
   }
+
+  //movil
+  getMovilUser(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-user-movile-info',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {

@@ -1,0 +1,41 @@
+<div class="header"></div>
+<div class="container">
+  <div *ngIf="step === 1">
+    <article class="postcard dark blue">
+      <a class="postcard__img_link" href="#">
+        <img
+          class="postcard__img"
+          src="../../../../assets/images/general/bus-image.png"
+          alt="Image Title"
+        />
+      </a>
+      <div class="postcard__text">
+        <h1 class="postcard__title blue"><a>Transporte Escolar</a></h1>
+        <div class="postcard__subtitle small">
+          <time datetime="2020-05-25 12:00:00">
+            <i class="fas fa-calendar-alt mr-2"></i
+            >{{ currentDate | date: 'yyyy-MM-dd' }}
+          </time>
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
+          Brindamos un trasporte seguro con todas las medidas de bioseguridad
+          para tu pequeño. Al inscribirte en el transporte tienes acceso a la
+          aplicación móvil del Centro de Desarrollo Infantil Descubrir. Podrás
+          recibir comunidados del transportista en la ruta que te inscribas,
+          para poder acceder al registro de transporte Escolar descargate la app
+          movil y regístrate con el mismo correo electrónico de tu cuenta
+          actual.
+        </div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item">
+            <i class="fas fa-tag mr-2"></i>DESCARGAR APP
+          </li>
+          <mat-icon style="margin-top: 5px">phone_iphone</mat-icon>
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <div *ngIf="step === 2">hola gg</div>
+</div>

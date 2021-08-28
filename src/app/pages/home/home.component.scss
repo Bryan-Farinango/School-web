@@ -71,3 +71,24 @@ mat-sidenav {
 a:hover {
   color: white;
 }
+
+.wrapCount {
+  position: relative;
+
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background-color: #7ed957;
+  border-radius: 50%;
+  span {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Myriad Pro Regular', serif;
+    font-size: 22px;
+    letter-spacing: -0.22px;
+    line-height: unset;
+  }
+}

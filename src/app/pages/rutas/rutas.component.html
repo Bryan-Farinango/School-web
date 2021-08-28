@@ -1,20 +1,20 @@
+<div class="header-button" style="padding-top: 20px">
+  <button
+    class="login-button"
+    color="primary"
+    type="submit"
+    mat-flat-button
+    [routerLink]="['/home/create-ruta']"
+  >
+    Crear Ruta
+  </button>
+</div>
+<div *ngIf="message" class="empty-message">
+  <span style="font-family: 'Myriad Pro Bold'; font-weight: 700"
+    >No existen Rutas creadas.</span
+  >
+</div>
 <div class="container-fluid">
-  <div class="header-button" style="padding-top: 20px">
-    <button
-      class="login-button"
-      color="primary"
-      type="submit"
-      mat-flat-button
-      [routerLink]="['/home/create-ruta']"
-    >
-      Crear Ruta
-    </button>
-  </div>
-  <div *ngIf="message" class="empty-message">
-    <span style="font-family: 'Myriad Pro Bold'; font-weight: 700"
-      >No existen Rutas creadas.</span
-    >
-  </div>
   <div class="col-md-12">
     <div class="cards-rutas">
       <mat-card class="example-card" *ngFor="let ruta of responseProcess">

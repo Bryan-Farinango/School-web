@@ -2,21 +2,20 @@
   <mat-sidenav opened="true" mode="side" style="position: fixed">
     <fury-scrollbar class="sidenav-items" fxFlex="auto">
       <div class="sidenav-user">
-        <img
-          class="sidenav-user-image"
-          src="../../../assets/images/general/perfil-default.png"
-        />
+        <div
+          style="margin-top: 2rem"
+          class="wrapCount"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <span>{{ displayName }}</span>
+        </div>
 
-        <h5 class="sidenav-user-email">profesor@example.com</h5>
+        <h5 class="sidenav-user-email">{{ email }}</h5>
 
         <div class="sidenav-user-icons" fxLayout="row">
-          <a mat-icon-button>
-            <mat-icon>assignment</mat-icon>
-          </a>
-          <a mat-icon-button>
-            <mat-icon>date_range</mat-icon>
-          </a>
-          <a mat-icon-button>
+          <a mat-icon-button (click)="onLogout()">
             <mat-icon>exit_to_app</mat-icon>
           </a>
         </div>

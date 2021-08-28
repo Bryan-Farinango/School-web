@@ -103,10 +103,10 @@ export class LoginComponent implements OnInit {
           this.adminService.loginUserMongo(this.objLogin).subscribe(
             (result) => {
               if (result.resultado == true) {
-                console.log(result);
+                //localStorage.setItem('rol', result.objeto.rol);
                 localStorage.setItem('usuario_id', result.objeto.user_id);
                 if (result.objeto.rol === 'Administrador') {
-                  this.router.navigate(['/home']);
+                  this.router.navigate(['/home/students-request']);
                 } else if (result.objeto.rol === 'Profesor') {
                   this.router.navigate(['/teacher-page/techer-students']);
                 } else if (result.objeto.rol === 'Padre') {
