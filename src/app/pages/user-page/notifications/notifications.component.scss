@@ -356,3 +356,12 @@ body {
   font-weight: bold;
   font-size: 16px;
 }
+
+.notifications {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 8rem;
+  font-size: 18px;
+  font-weight: bold;
+}

@@ -504,6 +504,36 @@ export class AdminApiService {
       )
       .pipe(retry(1), catchError(this.processError));
   }
+
+  getStudentTransporte(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-estudiante-transporte',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  getRutasForUser(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/get-rutas-for-user',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
+
+  matricularEstudiante(data: any) {
+    return this.httpClient
+      .post<any>(
+        this.endpoint + '/matricula-transporte',
+        JSON.stringify(data),
+        this.httpHeader
+      )
+      .pipe(retry(1), catchError(this.processError));
+  }
   processError(err: any) {
     let message = '';
     if (err.error instanceof ErrorEvent) {
