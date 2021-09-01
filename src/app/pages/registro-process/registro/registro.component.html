@@ -1,257 +1,161 @@
 <div class="container-fluid background-layout-login">
-  <div class="row align-items-center">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
-      <app-layout-login-header></app-layout-login-header>
-      <div class="container-body">
-        <p class="prueba-text">Prueba gratis durante 15 días</p>
-        <div class="box-content">
-          <form
-            class="form-registro"
-            [formGroup]="registerForm"
-            (ngSubmit)="onRegister(f)"
-            #f="ngForm"
-          >
-            <div class="registro">
-              <h1>Regístrate para obtener tu cuenta</h1>
-              <div class="row align-items-baseline">
-                <div class="col">
-                  <div class="field">
-                    <input
-                      type="text"
-                      name="nombre"
-                      required
-                      formControlName="nombre"
-                      placeholder="Freddy"
-                      maxlength="50"
-                    />
-                    <label for="nombre">Nombre</label>
-                  </div>
-                  <div
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['nombre'].hasError('required')
-                    "
-                    class="text-danger"
-                  >
-                    <img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce tu nombre
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="field">
-                    <input
-                      class="lastname"
-                      type="text"
-                      name="apellido"
-                      required
-                      formControlName="apellido"
-                      placeholder="Duque"
-                      maxlength="50"
-                    />
-                    <label for="apellido">Apellido</label>
-                  </div>
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['apellido'].hasError('required')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce tu apellido</span
-                  >
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="field">
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      email
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                      formControlName="email"
-                      placeholder="test@test.com"
-                    />
-                    <label for="email">Correo electrónico</label>
-                  </div>
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['email'].hasError('required')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce una dirección de correo electrónico
-                  </span>
-                  <span
-                    *ngIf="
-                      f.touched &&
-                      registerForm.controls['email'].hasError('pattern')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce un correo electrónico válido</span
-                  >
-                  <span *ngIf="emailExist" class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />El email ingresado ya se encuentra registrado</span
-                  >
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="field">
-                    <input
-                      [type]="showPassword ? 'text' : 'password'"
-                      name="password"
-                      required
-                      minlength="10"
-                      formControlName="password"
-                      placeholder="prueba123"
-                    />
-                    <label for="password">Crear contraseña</label>
-                    <img
-                      (click)="setShowPassword()"
-                      [src]="
-                        showPassword
-                          ? 'assets/images/general/close-eye.svg'
-                          : 'assets/images/general/open-eye.svg'
-                      "
-                      alt="open-eye"
-                    />
-                  </div>
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['password'].hasError('required')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce una contraseña</span
-                  >
-                  <span
-                    *ngIf="
-                      f.touched &&
-                      registerForm.controls['password'].hasError('minlength')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Tu contraseña no es lo suficientemente segura. La
-                    contraseña debe tener por lo menos 10 caracteres</span
-                  >
-                  <span *ngIf="!f.submitted">
-                    <ul>
-                      <li>Debe contener al menos 10 caracteres</li>
-                      <li>No puede contener los caracteres <,> ni espacios</li>
-                    </ul>
-                  </span>
-                </div>
-              </div>
-              <div class="row align-items-baseline">
-                <div class="col-md-6">
-                  <div class="field">
-                    <input
-                      type="text"
-                      name="telefono"
-                      required
-                      placeholder="0987654321"
-                      maxlength="10"
-                      minlength="10"
-                      pattern="[0-9]\d{0,10}$"
-                      formControlName="telefono"
-                    />
-                    <label for="telefono">Teléfono</label>
-                  </div>
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['telefono'].hasError('required')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce un número de teléfono en el campo vacío</span
-                  >
-                  <span
-                    *ngIf="
-                      f.touched &&
-                      registerForm.controls['telefono'].hasError('pattern')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Solo puedes introducir números</span
-                  >
+  <div class="login-bg"></div>
+  <div class="login-form">
+    <div class="col-md-6 offset-md-3">
+      <br /><br /><br />
 
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['telefono'].hasError('minlength')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Mínimo 10 números formato inválido</span
-                  >
-                </div>
-                <div class="col-md-6">
-                  <div class="field">
-                    <select
-                      id="rol"
-                      name="rol"
-                      class="form-control"
-                      required
-                      formControlName="rol"
-                      aria-placeholder="Selecciona tu rol"
-                    >
-                      <option value="" disabled selected>
-                        Selecciona tu rol
-                      </option>
-                      <option value="desarrollador">Desarrollador</option>
-                      <!-- <option disabled value="enterprise">Enterprise</option> -->
-                    </select>
-                  </div>
-                  <span
-                    *ngIf="
-                      f.submitted &&
-                      registerForm.controls['rol'].hasError('required')
-                    "
-                    class="text-danger"
-                    ><img
-                      src="assets/images/general/error-message-icon.svg"
-                      alt="error"
-                    />Introduce un rol</span
-                  >
-                </div>
-              </div>
-              <button type="submit">Registrarme</button>
-              <p>
-                ¿Tienes una cuenta?
-                <span [routerLink]="['/login']">Inicia sesión</span>
-              </p>
+      <div class="container-form">
+        <form
+          class="form-login"
+          [formGroup]="registerForm"
+          (ngSubmit)="onRegister(f)"
+          #f="ngForm"
+        >
+          <div class="login">
+            <h2>¿Eres padre de familia?</h2>
+            <h1>Crea una cuenta</h1>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input
+                type="text"
+                name="nombre"
+                formControlName="nombre"
+                matInput
+                #fieldEmail
+                required
+                placeholder="Nombre"
+                maxlength="50"
+              />
+
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Apellido</mat-label>
+              <input
+                class="lastname"
+                type="text"
+                name="apellido"
+                required
+                formControlName="apellido"
+                placeholder="Apellido"
+                matInput
+                maxlength="50"
+              />
+
+              <mat-icon matSuffix>article</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Correo electrónico</mat-label>
+
+              <input
+                matInput
+                type="email"
+                name="email"
+                required
+                email
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                formControlName="email"
+                placeholder="test@test.com"
+              />
+
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error
+                *ngIf="
+                  f.touched &&
+                  registerForm.controls['email'].hasError('pattern')
+                "
+                >Introduce un correo electrónico válido
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input
+                [type]="hide ? 'password' : 'text'"
+                matInput
+                name="password"
+                required
+                minlength="10"
+                formControlName="password"
+                placeholder="prueba123"
+              />
+
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hide = !hide"
+              >
+                <mat-icon>lock</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="
+                  f.submitted &&
+                  registerForm.controls['password'].hasError('minlength')
+                "
+              >
+                La contraseña debe tener por lo menos 10 caracteres</mat-error
+              >
+              <br />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono</mat-label>
+
+              <input
+                matInput
+                type="text"
+                name="telefono"
+                required
+                placeholder="0987654321"
+                maxlength="10"
+                minlength="10"
+                pattern="[0-9]\d{0,10}$"
+                formControlName="telefono"
+              />
+
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error
+                *ngIf="
+                  f.submitted &&
+                  registerForm.controls['telefono'].hasError('pattern')
+                "
+                >Solo puedes introducir números</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  f.submitted &&
+                  registerForm.controls['telefono'].hasError('minlength') &&
+                  !registerForm.controls['telefono'].hasError('pattern')
+                "
+                >Introduce mínimo 10 números</mat-error
+              >
+            </mat-form-field>
+            <div *ngIf="emailExist" class="text-danger">
+              El email ingresado ya se encuentra registrado <br /><br />
             </div>
-          </form>
-        </div>
+
+            <button
+              class="login-button"
+              color="primary"
+              type="submit"
+              mat-flat-button
+            >
+              Registrarme
+            </button>
+
+            <p class="register-redirect">
+              Ya eres miembro?
+              <span [routerLink]="['/login']">Inicia sesión</span>
+            </p>
+          </div>
+        </form>
       </div>
-      <app-layout-login-footer></app-layout-login-footer>
     </div>
   </div>
 </div>
+
+<!-- Modal -->

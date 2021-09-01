@@ -13,7 +13,8 @@ export class FormularioRecuperarContrasenaComponent implements OnInit {
     password: new FormControl(''),
     repeatPassword: new FormControl(''),
   });
-
+  hide = true;
+  hide2 = true;
   public showPassword: boolean;
   public showRepeatPassword: boolean;
   public mode: string;

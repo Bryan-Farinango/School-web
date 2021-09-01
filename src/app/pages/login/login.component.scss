@@ -9,8 +9,84 @@
   }
 }
 
+.container-fluid {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.login-bg {
+  width: 60%;
+  background: url(../../../assets/images/login/background.png);
+  @media (max-width: $md) {
+    width: 0%;
+  }
+}
+
+.login-form-init {
+  padding: 0 !important;
+  width: 40%;
+  @media (max-width: $md) {
+    width: 100%;
+  }
+}
+button {
+  background-color: $green-school;
+}
 .form-login {
+  /*
+  .mat-form-field {
+  }
+*/
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: black !important;
+  }
+  .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
   .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1 {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  p {
+    text-align: right;
+    color: black;
+  }
+  p:hover {
+    color: $green-school;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .register-redirect:hover {
+    color: black !important;
+    cursor: auto;
+  }
+  .register-redirect {
+    padding-top: 20px;
+    text-align: center;
+    text-decoration: none !important;
+
+    span {
+      color: $green-school;
+      cursor: pointer;
+    }
+  }
+
+  .login-button {
+    background-color: $green-school;
+    height: 50px;
+  }
+
+  .login2 {
     .row {
       min-height: auto;
       padding-top: 0;
@@ -73,7 +149,7 @@
       input:not(:placeholder-shown) + label,
       input:focus + label {
         transform: translate(10px, 0) scale(1);
-        color: $blue-stupendo;
+        color: $green-school;
       }
       img {
         width: 18px;
@@ -88,7 +164,7 @@
     h1 {
       font-size: 16px;
       line-height: 19px;
-      color: $blue-stupendo;
+      color: $green-school;
       text-align: center;
       font-family: 'Myriad Pro Regular';
       @media (min-width: $md) {
@@ -99,10 +175,10 @@
     input {
       display: block;
       width: 100%;
-      border: 1px solid $blue-stupendo;
+      border: 1px solid $green-school;
       text-decoration: none;
       border-radius: 17px;
-      color: $blue-stupendo;
+      color: $green-school;
       font-size: 14px;
       line-height: 16px;
       padding: 10px 50px 10px 8px;
@@ -144,7 +220,7 @@
     .recuperar-contrasena {
       display: flex;
       float: right;
-      color: $turquoise-stupendo;
+      color: $turquoise-school;
       font-size: 10px;
       padding: 10px 0 25px;
       display: block;
@@ -162,7 +238,7 @@
       display: block;
       width: 100%;
       border-radius: 17px;
-      background-color: $blue-stupendo;
+      background-color: $green-school;
       font-size: 18px;
       color: #ffffff;
       letter-spacing: 1.8px;
@@ -182,9 +258,9 @@
       text-align: center;
       line-height: 16.8px;
       font-size: 14px;
-      color: $blue-stupendo;
+      color: $green-school;
       span {
-        color: $turquoise-stupendo;
+        color: $turquoise-school;
         cursor: pointer;
         text-decoration: underline;
       }
@@ -204,7 +280,7 @@
       position: relative;
       h4 {
         font-size: 24px;
-        color: $blue-stupendo;
+        color: $green-school;
         font-family: 'Myriad Pro Regular';
       }
       button {
@@ -212,7 +288,7 @@
         right: 20px;
         top: 20px;
         background: no-repeat;
-        border: solid 1px $turquoise-stupendo;
+        border: solid 1px $turquoise-school;
         border-radius: 50%;
         width: 25px;
         height: 25px;
@@ -220,7 +296,7 @@
         justify-content: center;
         align-items: center;
         span {
-          color: $blue-stupendo;
+          color: $green-school;
           font-family: 'Myriad Pro Regular';
         }
       }
@@ -228,15 +304,15 @@
     .modal-body {
       p {
         font-size: 14px;
-        color: $blue-stupendo;
+        color: $green-school;
         span {
-          color: $turquoise-stupendo;
+          color: $turquoise-school;
           text-decoration: underline;
           cursor: pointer;
         }
       }
       .sub-title {
-        color: $blue-stupendo;
+        color: $green-school;
         font-family: 'Myriad Pro Regular';
         font-size: 14px;
       }

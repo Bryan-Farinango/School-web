@@ -32,7 +32,7 @@ export class VerificacionCuentaComponent implements OnInit {
       this.stateVerification = true;
       this.titlePage = '¡Listo!';
       this.subTitlePage = 'Tu cuenta se encuentra activada.';
-      this.textPage = 'Ya puedes disfrutar de los servicios de DEC';
+      this.textPage = 'Ya puedes disfrutar de nuestros servicios';
     } catch (error) {
       console.log(error);
       this.stateVerification = false;

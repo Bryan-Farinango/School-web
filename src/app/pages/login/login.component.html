@@ -1,124 +1,106 @@
 <div class="container-fluid background-layout-login">
-  <div class="row align-items-center">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
+  <div class="login-bg"></div>
+  <div class="login-form-init">
+    <div class="col-md-6 offset-md-3">
+      <br />
       <app-layout-login-header></app-layout-login-header>
-      <div class="container-body">
-        <div class="box-content">
-          <form
-            class="form-login"
-            [formGroup]="loginForm"
-            (ngSubmit)="onLogin(f, content)"
-            #f="ngForm"
-          >
-            <div class="login">
-              <h1>Inicia sesión en tu cuenta</h1>
-              <div class="row">
-                <div class="col">
-                  <div class="field">
-                    <input
-                      class="email"
-                      type="email"
-                      name="email"
-                      formControlName="email"
-                      required
-                      email
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                      placeholder="test@test.com"
-                    />
-                    <label for="email">Correo electrónico</label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="field">
-                    <input
-                      name="password"
-                      [type]="showPassword ? 'text' : 'password'"
-                      formControlName="password"
-                      required
-                      placeholder="prueba123"
-                    />
-                    <label for="password">Contraseña</label>
-                    <img
-                      (click)="setShowPassword()"
-                      [src]="
-                        showPassword
-                          ? 'assets/images/general/close-eye.svg'
-                          : 'assets/images/general/open-eye.svg'
-                      "
-                      alt="open-eye"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="errors">
-                <div
-                  *ngIf="
-                    f.submitted &&
-                    (loginForm.controls['email'].hasError('required') ||
-                      loginForm.controls['password'].hasError('required'))
-                  "
-                  class="text-danger"
-                >
-                  <img
-                    src="assets/images/general/error-message-icon.svg"
-                    alt="error"
-                  />
-                  Campos obligatorios vacíos
-                </div>
-                <div *ngIf="verified" class="text-danger">
-                  <img
-                    src="assets/images/general/error-message-icon.svg"
-                    alt="error"
-                  />
-                  Correo electrónico no verificado. Revisa tu bandeja de entrada
-                  y valida tu cuenta
-                </div>
-                <div *ngIf="errorAuth" class="text-danger">
-                  <img
-                    src="assets/images/general/error-message-icon.svg"
-                    alt="error"
-                  />
-                  Correo o contraseña incorrecto
-                </div>
-                <div *ngIf="manyRequestError" class="text-danger">
-                  <img
-                    src="assets/images/general/error-message-icon.svg"
-                    alt="error"
-                  />
-                  El acceso a esta cuenta se ha desactivado temporalmente
-                </div>
-                <div
-                  *ngIf="
-                    f.submitted &&
-                    loginForm.controls['email'].hasError('pattern')
-                  "
-                  class="text-danger"
-                >
-                  <img
-                    src="assets/images/general/error-message-icon.svg"
-                    alt="error"
-                  />
-                  Introduce un correo electrónico válido
-                </div>
-              </div>
-              <label
-                class="recuperar-contrasena"
-                [routerLink]="['/recuperar-contrasena']"
-                for="password"
-                >¿No recuerdas la contraseña?</label
+      <br /><br />
+      <div class="container-form">
+        <form
+          class="form-login"
+          [formGroup]="loginForm"
+          (ngSubmit)="onLogin(f, content)"
+          #f="ngForm"
+        >
+          <div class="login">
+            <h1>Inicia sesión</h1>
+            <mat-form-field appearance="outline" hideRequiredMarker>
+              <mat-label>Correo</mat-label>
+              <input
+                type="text"
+                name="email"
+                formControlName="email"
+                matInput
+                #fieldEmail
+                required
+                email
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                placeholder="test@test.com"
+              />
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error
+                *ngIf="
+                  f.submitted && loginForm.controls['email'].hasError('pattern')
+                "
               >
-              <button type="submit">Continuar</button>
-              <p>
-                ¿No tienes cuenta?
-                <span [routerLink]="['/registro']">Regístrate aquí</span>
-              </p>
+                Introduce un correo electrónico válido
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" hideRequiredMarker>
+              <mat-label>Contraseña</mat-label>
+              <input
+                name="password"
+                [type]="hide ? 'password' : 'text'"
+                matInput
+                placeholder="prueba123"
+                required
+                formControlName="password"
+              />
+
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hide = !hide"
+              >
+                <mat-icon>lock</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <div class="errors">
+              <mat-error
+                *ngIf="
+                  f.submitted &&
+                  (loginForm.controls['email'].hasError('required') ||
+                    loginForm.controls['password'].hasError('required'))
+                "
+              >
+                Ingresa un correo y contraseña <br /><br />
+              </mat-error>
+              <div *ngIf="verified" class="text-danger">
+                Correo electrónico no verificado. Revisa tu bandeja de entrada y
+                valida tu cuenta<br /><br />
+              </div>
+              <div *ngIf="errorAuth" class="text-danger">
+                Correo o contraseña incorrecto<br /><br />
+              </div>
+              <div *ngIf="manyRequestError" class="text-danger">
+                El acceso a esta cuenta se ha desactivado temporalmente<br /><br />
+              </div>
             </div>
-          </form>
-        </div>
+            <p
+              class="recuperar-contrasena"
+              [routerLink]="['/recuperar-contrasena']"
+              for="password"
+            >
+              <span> ¿Olvidaste tu contraseña?</span>
+            </p>
+            <button
+              class="login-button"
+              color="primary"
+              type="submit"
+              mat-flat-button
+            >
+              Iniciar Sesión
+            </button>
+
+            <p class="register-redirect">
+              No eres miembro?
+              <span [routerLink]="['/registro']">Crea una cuenta</span>
+            </p>
+          </div>
+        </form>
       </div>
-      <app-layout-login-footer></app-layout-login-footer>
     </div>
   </div>
 </div>

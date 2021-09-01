@@ -1,34 +1,31 @@
 <div class="container-fluid background-layout-login">
-  <div class="row align-items-center">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4 align-self-center">
+  <div class="login-form">
+    <div class="col-md-6 offset-md-3">
+      <br />
       <app-layout-login-header></app-layout-login-header>
-      <div class="chargeImage" *ngIf="chargeImg">
-        <img src="assets/images/general/charge-dec.gif" alt="charge" />
-      </div>
-      <div class="container-body" *ngIf="!chargeImg">
-        <div class="box-content">
-          <div
-            class="verificacion-correo-body"
-            *ngIf="user$ | async as user; else loading"
-          >
-            <h3 class="text-center">¡Gracias por Registrarte!</h3>
-            <p class="text-center first-paragraph">
-              Verifica tu registro en el correo electrónico y valida tu cuenta
-            </p>
-            <p class="text-center">
-              ¿No recibiste el correo electrónico ?
-              <br />
-              Mira en tu carpeta de correo no deseado o
-              <br />
-              <span (click)="onSendEmail()">vuelve a enviarlo</span>
-            </p>
+
+      <div class="container-form form-login">
+        <div class="container-body" *ngIf="!chargeImg">
+          <div class="box-content">
+            <div class="verificacion-correo-body">
+              <h1 class="text-center">¡Enviado!</h1>
+              <p class="text-center first-paragraph">
+                Verifica tu registro en tu correo electrónico y valida tu cuenta
+              </p>
+              <div class="text-center">
+                <span style="font-weight: bold"
+                  >¿No recibiste el correo electrónico ?</span
+                >
+                <br />
+                Mira en tu carpeta de correo no deseado
+              </div>
+              <mat-icon class="check-icon">check_circle</mat-icon>
+            </div>
           </div>
-          <ng-template #loading>
-            <span> Ha ocurrido un error </span>
-          </ng-template>
         </div>
       </div>
-      <app-layout-login-footer></app-layout-login-footer>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
