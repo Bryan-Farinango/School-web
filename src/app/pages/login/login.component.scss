@@ -34,7 +34,7 @@
   }
 }
 button {
-  background-color: $blue-stupendo;
+  background-color: $green-school;
 }
 .form-login {
   /*
@@ -62,7 +62,7 @@ button {
     color: black;
   }
   p:hover {
-    color: $blue-stupendo;
+    color: $green-school;
     cursor: pointer;
     text-decoration: underline;
   }
@@ -76,13 +76,13 @@ button {
     text-decoration: none !important;
 
     span {
-      color: $blue-stupendo;
+      color: $green-school;
       cursor: pointer;
     }
   }
 
   .login-button {
-    background-color: $blue-stupendo;
+    background-color: $green-school;
     height: 50px;
   }
 
@@ -149,7 +149,7 @@ button {
       input:not(:placeholder-shown) + label,
       input:focus + label {
         transform: translate(10px, 0) scale(1);
-        color: $blue-stupendo;
+        color: $green-school;
       }
       img {
         width: 18px;
@@ -164,7 +164,7 @@ button {
     h1 {
       font-size: 16px;
       line-height: 19px;
-      color: $blue-stupendo;
+      color: $green-school;
       text-align: center;
       font-family: 'Myriad Pro Regular';
       @media (min-width: $md) {
@@ -175,10 +175,10 @@ button {
     input {
       display: block;
       width: 100%;
-      border: 1px solid $blue-stupendo;
+      border: 1px solid $green-school;
       text-decoration: none;
       border-radius: 17px;
-      color: $blue-stupendo;
+      color: $green-school;
       font-size: 14px;
       line-height: 16px;
       padding: 10px 50px 10px 8px;
@@ -220,7 +220,7 @@ button {
     .recuperar-contrasena {
       display: flex;
       float: right;
-      color: $turquoise-stupendo;
+      color: $turquoise-school;
       font-size: 10px;
       padding: 10px 0 25px;
       display: block;
@@ -238,7 +238,7 @@ button {
       display: block;
       width: 100%;
       border-radius: 17px;
-      background-color: $blue-stupendo;
+      background-color: $green-school;
       font-size: 18px;
       color: #ffffff;
       letter-spacing: 1.8px;
@@ -258,9 +258,9 @@ button {
       text-align: center;
       line-height: 16.8px;
       font-size: 14px;
-      color: $blue-stupendo;
+      color: $green-school;
       span {
-        color: $turquoise-stupendo;
+        color: $turquoise-school;
         cursor: pointer;
         text-decoration: underline;
       }
@@ -280,7 +280,7 @@ button {
       position: relative;
       h4 {
         font-size: 24px;
-        color: $blue-stupendo;
+        color: $green-school;
         font-family: 'Myriad Pro Regular';
       }
       button {
@@ -288,7 +288,7 @@ button {
         right: 20px;
         top: 20px;
         background: no-repeat;
-        border: solid 1px $turquoise-stupendo;
+        border: solid 1px $turquoise-school;
         border-radius: 50%;
         width: 25px;
         height: 25px;
@@ -296,7 +296,7 @@ button {
         justify-content: center;
         align-items: center;
         span {
-          color: $blue-stupendo;
+          color: $green-school;
           font-family: 'Myriad Pro Regular';
         }
       }
@@ -304,15 +304,15 @@ button {
     .modal-body {
       p {
         font-size: 14px;
-        color: $blue-stupendo;
+        color: $green-school;
         span {
-          color: $turquoise-stupendo;
+          color: $turquoise-school;
           text-decoration: underline;
           cursor: pointer;
         }
       }
       .sub-title {
-        color: $blue-stupendo;
+        color: $green-school;
         font-family: 'Myriad Pro Regular';
         font-size: 14px;
       }
