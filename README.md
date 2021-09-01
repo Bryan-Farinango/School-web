@@ -62,3 +62,29 @@ Asignación de transportistas para las rutas de transporte escolar creadas anter
 
 Edición y control de usuarios transportistas.
 ![image](https://user-images.githubusercontent.com/38628690/131639432-5e4bf914-6d0c-4d0c-ac0c-52dfa5c66b44.png)
+
+### Rol Profesor
+Emisión de comunicados a padres de Familia de los alumnos inscritos en una materia
+![2021-08-28 23_40_04-School app - Opera](https://user-images.githubusercontent.com/38628690/131642312-a72bc1f7-2713-4a00-be68-64498d8f050a.png)
+
+Creación y control del registro de Calificaciones de estudiantes
+![image](https://user-images.githubusercontent.com/38628690/131642488-460b8d7e-9f45-4c95-b947-8b2af3f77f2e.png)
+
+![2021-08-28 23_45_21-NVIDIA GeForce Overlay](https://user-images.githubusercontent.com/38628690/131642609-cf065498-8db7-4ccc-a0e3-94ba11862084.png)
+
+### Padre de Familia
+Solicitud de matrícula con formulario de datos para un grado.
+![2021-08-28 23_31_05-NVIDIA GeForce Overlay](https://user-images.githubusercontent.com/38628690/131642775-93abc8b4-f036-43e5-a2d4-aee4f5ddca8b.png)
+
+Sección de notificaciones a padres de familia emitidas por parte de los profesores de sus hijos.
+![image](https://user-images.githubusercontent.com/38628690/131642863-c076f569-1345-4a4c-9e0e-927a760be3ae.png)
+
+Visualización de calificaciones de sus hijos por materia.
+![image](https://user-images.githubusercontent.com/38628690/131642946-c687059d-e272-437a-a79c-1b9926b27783.png)
+
+Inscripción en transporte escolar conectado con la autenticación de firebase para conexión de datos registrados en la Web y mongo DB
+![image](https://user-images.githubusercontent.com/38628690/131643052-fe19c56e-fea6-49c9-812b-b928541c1428.png)
+
+Inscripción en transporte escolar habilitado una vez que el padre de familia se registre en la APP móvil
+![image](https://user-images.githubusercontent.com/38628690/131643135-87bfcd87-ada5-4108-95f9-1c3ff57ccbfe.png)
+
