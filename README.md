@@ -1,8 +1,8 @@
 # School-web Tesis
 ## Centro de Desarrollo Infantil Descubrir 🚀
 El proyecto School-web contiene el desarrollo de un sistema de administración de la guardería "Centro de Desarrollo infantil Descubrir" destinado a los usuarios finales **Padres de Familia** quienes llevaran el control de matrícula, notificaciones, calificaciones y transporte escolar de sus hijos. 
-### **Video demostrativo**
-* enlace_youtube
+### **Video demostrativo** 
+* [Manual usuario video YouTube](https://www.youtube.com/watch?v=ZHiUGJxOSGo)
 ## Desarrollado por ✒️
 * **Bryan Farinango** - [Bryan-Farinango](https://gist.github.com/Bryan-Farinango)
 * **Josselyn Vela** - [JosselynVela](https://github.com/JosselynVela)
