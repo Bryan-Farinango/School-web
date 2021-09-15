@@ -40,6 +40,7 @@ import { NotificationsComponent } from './pages/user-page/notifications/notifica
 import { NotasComponent } from './pages/teacher-page/notas/notas.component';
 import { CalificacionesComponent } from './pages/user-page/calificaciones/calificaciones.component';
 import { UserTransporteComponent } from './pages/user-page/user-transporte/user-transporte.component';
+import { AdminAccountGuard } from './guards/admin-account.guard';
 
 const redirectUnauthorizedToLogin = () =>
   redirectUnauthorizedTo(['info-school']);
@@ -74,7 +75,8 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AngularFireAuthGuard, RegisterGuardGuard],
+    canActivate: [AngularFireAuthGuard, RegisterGuardGuard, AdminAccountGuard],
+
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     children: [
       {

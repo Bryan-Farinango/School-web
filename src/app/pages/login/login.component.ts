@@ -107,6 +107,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('usuario_id', result.objeto.user_id);
                 if (result.objeto.rol === 'Administrador') {
                   this.router.navigate(['/home/students-request']);
+                  console.log('entro a la validacion de administrador');
                 } else if (result.objeto.rol === 'Profesor') {
                   this.router.navigate(['/teacher-page/techer-students']);
                 } else if (result.objeto.rol === 'Padre') {

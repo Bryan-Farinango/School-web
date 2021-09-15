@@ -21,6 +21,7 @@
 .login-bg {
   width: 60%;
   background: url(../../../assets/images/login/background.png);
+
   @media (max-width: $md) {
     width: 0%;
   }

@@ -94,6 +94,7 @@ import { NotificationsComponent } from './user-page/notifications/notifications.
 import { NotasComponent } from './teacher-page/notas/notas.component';
 import { CalificacionesComponent } from './user-page/calificaciones/calificaciones.component';
 import { UserTransporteComponent } from './user-page/user-transporte/user-transporte.component';
+import { AdminAccountGuard } from '../guards/admin-account.guard';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -193,7 +194,12 @@ import { UserTransporteComponent } from './user-page/user-transporte/user-transp
     DataTablesModule,
   ],
 
-  providers: [RegisterGuardGuard, VerificationGuardGuard, DatePipe],
+  providers: [
+    RegisterGuardGuard,
+    VerificationGuardGuard,
+    DatePipe,
+    AdminAccountGuard,
+  ],
   exports: [
     MatInputModule,
     MatTabsModule,
