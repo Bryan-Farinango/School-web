@@ -144,5 +144,8 @@
       }
     }
   },
-  "defaultProject": "dec-front"
+  "defaultProject": "dec-front",
+  "cli": {
+    "analytics": "3db63d97-d3ea-49a0-b434-7758b6ac3e32"
+  }
 }

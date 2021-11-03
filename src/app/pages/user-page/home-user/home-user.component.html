@@ -1,75 +1,122 @@
-<mat-toolbar fxLayout fxLayoutAlign="center center" style="position: fixed">
-  <button
-    mat-button
-    class="profile"
-    [disableRipple]="true"
-    style="margin-right: 10px"
-  >
-    <mat-icon style="color: black; margin-right: 10px">home</mat-icon>
-    <span style="color: black">Inicio</span>
-  </button>
-  <button
-    mat-button
-    class="profile"
-    [disableRipple]="true"
-    style="margin-right: 10px"
-    [routerLink]="['/user-page/create-inscription']"
-  >
-    <mat-icon style="color: black; margin-right: 10px">article</mat-icon>
-    <span style="color: black">Matrículas</span>
-  </button>
-  <button
-    mat-button
-    class="profile"
-    [disableRipple]="true"
-    style="margin-right: 10px"
-    [routerLink]="['/user-page/calificaciones']"
-  >
-    <mat-icon style="color: black; margin-right: 10px">sticky_note_2</mat-icon>
-    <span style="color: black">Calificaciones</span>
-  </button>
-  <button
-    mat-button
-    class="profile"
-    [disableRipple]="true"
-    style="margin-right: 10px"
-    [routerLink]="['/user-page/notifications']"
-  >
-    <mat-icon style="color: black; margin-right: 10px"
-      >mark_email_unread</mat-icon
-    >
-    <span style="color: black">Notificaciones</span>
-  </button>
-  <button
-    mat-button
-    class="profile"
-    [disableRipple]="true"
-    style="margin-right: 10px"
-    [routerLink]="['/user-page/user-transporte']"
-  >
-    <mat-icon style="color: black; margin-right: 10px"
-      >directions_bus_filled</mat-icon
-    >
-    <span style="color: black">Transporte</span>
-  </button>
-  <button
-    mat-button
-    class="profile"
-    [matMenuTriggerFor]="menuOptions"
-    [disableRipple]="true"
-    style="margin-right: 10px"
-  >
-    <mat-icon style="color: black; margin-right: 10px">person</mat-icon>
-    <span style="color: black">Perfil</span>
-
-    <mat-menu #menuOptions="matMenu">
-      <button mat-menu-item (click)="onLogout()">
-        <mat-icon>logout</mat-icon>
-        <span>Cerrar Sesión</span>
+<div class="contenedor-general">
+  <div class="vista-escritorio">
+    <mat-toolbar fxLayout fxLayoutAlign="center center" style="position: fixed">
+      <button
+        mat-button
+        class="profile"
+        [disableRipple]="true"
+        style="margin-right: 10px"
+      >
+        <mat-icon style="color: black; margin-right: 10px">home</mat-icon>
+        <span style="color: black">Inicio</span>
       </button>
-    </mat-menu>
-  </button>
-</mat-toolbar>
-<div>
-  <router-outlet></router-outlet>
+      <button
+        mat-button
+        class="profile"
+        [disableRipple]="true"
+        style="margin-right: 10px"
+        [routerLink]="['/user-page/create-inscription']"
+      >
+        <mat-icon style="color: black; margin-right: 10px">article</mat-icon>
+        <span style="color: black">Matrículas</span>
+      </button>
+      <button
+        mat-button
+        class="profile"
+        [disableRipple]="true"
+        style="margin-right: 10px"
+        [routerLink]="['/user-page/calificaciones']"
+      >
+        <mat-icon style="color: black; margin-right: 10px">sticky_note_2</mat-icon>
+        <span style="color: black">Calificaciones</span>
+      </button>
+      <button
+        mat-button
+        class="profile"
+        [disableRipple]="true"
+        style="margin-right: 10px"
+        [routerLink]="['/user-page/notifications']"
+      >
+        <mat-icon style="color: black; margin-right: 10px"
+          >mark_email_unread</mat-icon
+        >
+        <span style="color: black">Notificaciones</span>
+      </button>
+      <button
+        mat-button
+        class="profile"
+        [disableRipple]="true"
+        style="margin-right: 10px"
+        [routerLink]="['/user-page/user-transporte']"
+      >
+        <mat-icon style="color: black; margin-right: 10px"
+          >directions_bus_filled</mat-icon
+        >
+        <span style="color: black">Transporte</span>
+      </button>
+      <button
+        mat-button
+        class="profile"
+        [matMenuTriggerFor]="menuOptions"
+        [disableRipple]="true"
+        style="margin-right: 10px"
+      >
+        <mat-icon style="color: black; margin-right: 10px">person</mat-icon>
+        <span style="color: black">Perfil</span>
+    
+        <mat-menu #menuOptions="matMenu">
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      </button>
+    </mat-toolbar>
+
+  </div>
+  <div class="vista-mobile">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+      <div class="container-fluid ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" >
+            <a class="navbar-brand">
+              <mat-icon style="color: black; margin-right: 10px">home</mat-icon>
+              Inicio</a>
+            <a class="navbar-brand" [routerLink]="['create-inscription']">
+              <mat-icon style="color: black">article</mat-icon>
+              Matrículas
+            </a>
+            <a class="navbar-brand" [routerLink]="['calificaciones']">
+              <mat-icon style="color: black">sticky_note_2</mat-icon>
+              Calificaciones
+            </a>
+            <a class="navbar-brand" [routerLink]="['notifications']">
+              <mat-icon style="color: black; margin-right: 10px">mark_email_unread</mat-icon>
+              Notificaciones
+            </a>
+            <a class="navbar-brand" [routerLink]="['user-transporte']">
+              <mat-icon style="color: black; margin-right: 10px">directions_bus_filled</mat-icon>
+              Transporte
+            </a>
+            <a class="navbar-brand" (click)="onLogout()">
+              <mat-icon style="color: black; margin-right: 10px">person</mat-icon>
+              <span style="color: black">Cerrar Sesion</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>   
+
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div> 
 </div>
+
+
+
+
+

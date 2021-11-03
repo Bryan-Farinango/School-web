@@ -209,3 +209,27 @@ button:disabled {
     border: none;
   }
 }
+@media(max-width: $sm){
+ 
+  .calificaciones{
+    width: 5%;
+    margin-left:0px;
+    flex-direction: column;
+  }
+  span{
+    width: 50px;
+  }
+  
+};
+.quimestren{
+  
+  font-weight: bold;
+  margin-right: 60px;
+  color: cornflowerblue;
+                
+   @media (max-width:$md) {
+    padding-left: 110px;
+    margin-right: 0px;
+     
+   } 
+}
