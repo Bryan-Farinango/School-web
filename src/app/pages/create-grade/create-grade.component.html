@@ -27,7 +27,8 @@
                   #fieldEmail
                   required
                   placeholder="Nombre"
-                  maxlength="50"
+                  maxlength="30"
+                  (keypress)="keyPressOnlyText($event)"
                 />
 
                 <mat-icon matSuffix>menu_book</mat-icon>
@@ -62,8 +63,10 @@
                   matInput
                   #fieldEmail
                   required
-                  placeholder="1-3 años"
-                  maxlength="50"
+                  placeholder="3-5"
+                  maxlength="10"
+                  (keypress)="keyUpOnlyNumbers($event)"
+                  mask="0-0"
                 />
 
                 <mat-icon matSuffix>child_care</mat-icon>

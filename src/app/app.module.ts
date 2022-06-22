@@ -14,7 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: httpInterceptorProviders,
   bootstrap: [AppComponent],

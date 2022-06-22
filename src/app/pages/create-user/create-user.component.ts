@@ -52,7 +52,13 @@ export class CreateUserComponent implements OnInit {
     this.verticalAccountFormGroup = this.fb.group({
       name: [null, Validators.required],
       lastName: [null, Validators.required],
-      email: [null, Validators.required],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,3}$'),
+        ],
+      ],
       rol: [null, Validators.required],
       phone: [null, Validators.required],
     });
@@ -139,5 +145,24 @@ export class CreateUserComponent implements OnInit {
         );
       }
     } catch (error) {}
+  }
+
+  keyPressOnlyText(event: any): boolean {
+    const field = String.fromCharCode(event.keyCode);
+    if (/[a-zA-ZñÑÀ-ÿ`-]/.test(field)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  keyUpOnlyNumbers(event: any): void {
+    const pattern = /^[0-9]*$/;
+    const inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
+    }
   }
 }

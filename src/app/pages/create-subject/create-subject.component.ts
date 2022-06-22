@@ -126,4 +126,14 @@ export class CreateSubjectComponent implements OnInit {
       }
     );
   }
+
+  keyPressOnlyText(event: any): boolean {
+    const field = String.fromCharCode(event.keyCode);
+    if (/[a-zA-ZñÑÀ-ÿ` -]/.test(field)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
 }

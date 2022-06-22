@@ -15,7 +15,12 @@
             <div class="content" fxLayout="column" fxLayoutGap="8px">
               <mat-form-field fxFlex="auto">
                 <mat-label>Nombre de la asignatura</mat-label>
-                <input formControlName="subjectName" matInput required />
+                <input
+                  formControlName="subjectName"
+                  matInput
+                  required
+                  (keypress)="keyPressOnlyText($event)"
+                />
               </mat-form-field>
 
               <mat-form-field fxFlex="auto">

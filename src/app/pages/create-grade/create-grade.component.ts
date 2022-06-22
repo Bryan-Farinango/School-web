@@ -91,7 +91,7 @@ export class CreateGradeComponent implements OnInit {
             } else {
               this.successful = false;
               this.message = result.mensaje;
-              this.showAlert('El grado ya existe', 'Error');
+              this.showAlert(this.message, 'Error');
             }
           },
           (error) => {
@@ -99,5 +99,24 @@ export class CreateGradeComponent implements OnInit {
           }
         );
     } catch (error) {}
+  }
+
+  keyPressOnlyText(event: any): boolean {
+    const field = String.fromCharCode(event.keyCode);
+    if (/[0-9a-zA-ZñÑÀ-ÿ` -]/.test(field)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  keyUpOnlyNumbers(event: any): void {
+    const pattern = /^[0-9]*$/;
+    const inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
+    }
   }
 }

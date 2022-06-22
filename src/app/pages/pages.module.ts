@@ -95,6 +95,8 @@ import { NotasComponent } from './teacher-page/notas/notas.component';
 import { CalificacionesComponent } from './user-page/calificaciones/calificaciones.component';
 import { UserTransporteComponent } from './user-page/user-transporte/user-transporte.component';
 import { AdminAccountGuard } from '../guards/admin-account.guard';
+import { NgxMaskModule } from 'ngx-mask';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -142,6 +144,7 @@ import { AdminAccountGuard } from '../guards/admin-account.guard';
     UserTransporteComponent,
   ],
   imports: [
+    NgxMaskModule.forRoot(),
     MDBBootstrapModule,
     ButtonsModule,
     WavesModule,
