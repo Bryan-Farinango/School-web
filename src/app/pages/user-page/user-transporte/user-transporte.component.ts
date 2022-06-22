@@ -81,8 +81,6 @@ export class UserTransporteComponent implements OnInit {
             this.step = 2;
           }
           this.responseMovile = result.objeto;
-
-          console.log(this.responseMovile);
         } else {
         }
       },
@@ -114,8 +112,6 @@ export class UserTransporteComponent implements OnInit {
         if (result.resultado) {
           this.responseRutas = result.rutas;
           this.responseInscritos = result.inscritos;
-          console.log(this.responseRutas);
-          console.log('estos son los inscritos', result);
         }
       },
       (error) => {

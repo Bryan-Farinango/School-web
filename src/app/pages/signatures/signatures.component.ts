@@ -256,8 +256,6 @@ export class SignaturesComponent implements OnInit {
       year: anio,
       grade: grado,
     });
-
-    console.log('reseteado', this.editForm);
   }
 
   onUpdate(form: any, id: any) {

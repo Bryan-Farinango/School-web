@@ -186,8 +186,6 @@ export class NotasComponent implements OnInit {
             this.responseMaterias.push(myObject.materias);
           });
           */
-
-          console.log('solo estudiantes', this.responseOnlyStudents);
         }
       },
       (error) => {
@@ -284,7 +282,7 @@ export class NotasComponent implements OnInit {
   onEditQuimestral(value: any, nota: any) {
     this.auxIdNotas = value;
     this.auxNotaFinal = nota;
-    console.log('que paza: ', nota);
+
     this.editNotasFormQuimestrar.get('notaFinal').reset(this.auxNotaFinal);
     this.openModalEditarQuimestral();
   }
@@ -308,7 +306,6 @@ export class NotasComponent implements OnInit {
     this.dataObjRegistro.descripcion = description;
     this.dataObjRegistro.estudiante_id = student;
     this.dataObjRegistro.quimestre = quimestre;
-    console.log('datos listos a crearse: ', this.dataObjRegistro);
 
     this.adminService.createRegistroNotas(this.dataObjRegistro).subscribe(
       (result) => {
@@ -414,7 +411,6 @@ export class NotasComponent implements OnInit {
       (result) => {
         if (result.resultado == true) {
           this.responseStudents = result.estudiantes;
-          console.log(this.responseStudents);
         }
       },
       (error) => {
@@ -473,7 +469,50 @@ export class NotasComponent implements OnInit {
       (result) => {
         if (result.resultado) {
           this.responseNotas = result.calificaciones;
-          console.log('notas finales: ', this.responseNotas);
+
+          this.responseNotas.forEach((myObject) => {
+            if (
+              myObject.parcial1.total != 0 &&
+              myObject.parcial2.total != 0 &&
+              myObject.parcial3.total != 0
+            ) {
+              this.dataObjQuimestra.calificacion_id =
+                myObject.nota_estudiante_id;
+              const notaFinalPromedio: number =
+                myObject.parcial1.total +
+                myObject.parcial2.total +
+                myObject.parcial3.total / 3;
+
+              this.dataObjQuimestra.nota_final = notaFinalPromedio
+                .toString()
+                .substring(0, 4);
+
+              this.adminService
+                .updateNotaQuimestral(this.dataObjQuimestra)
+                .subscribe(
+                  (result) => {
+                    if (result.resultado) {
+                      //this.searchCalificaciones();
+                    } else {
+                      this.showAlert(result.mensaje, 'Error');
+                    }
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+            }
+          });
+          this.adminService.getNotas(this.dataObjGetCalificaciones).subscribe(
+            (result) => {
+              if (result.resultado) {
+                this.responseNotas = result.calificaciones;
+              }
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         }
       },
       (error) => {
@@ -535,8 +574,6 @@ export class NotasComponent implements OnInit {
           this.editNotasForm.get('nota5').reset(result.calificaciones.nota5);
           this.editNotasForm.get('nota6').reset(result.calificaciones.nota6);
           this.editNotasForm.get('total').reset(result.calificaciones.total);
-
-          console.log('notas by parcial: ', result);
         } else {
           this.showAlert(result.mensaje, 'Error');
         }
@@ -607,7 +644,6 @@ export class NotasComponent implements OnInit {
 
     this.dataObjUpdateNota.parcial = parcial;
 
-    console.log('listo para acutalizar potter: ', this.dataObjUpdateNota);
     this.adminService.updateNotas(this.dataObjUpdateNota).subscribe(
       (result) => {
         if (result.resultado) {

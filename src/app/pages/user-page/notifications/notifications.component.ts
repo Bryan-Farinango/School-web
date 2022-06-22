@@ -48,7 +48,6 @@ export class NotificationsComponent implements OnInit {
       (result) => {
         if (result.resultado == true) {
           this.responseProcess = result.notificaciones;
-          console.log('materias', this.responseProcess);
         }
       },
       (error) => {

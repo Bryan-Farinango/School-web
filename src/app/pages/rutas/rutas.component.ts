@@ -157,7 +157,6 @@ export class RutasComponent implements OnInit {
   }
 
   onDeleteTransportista(id: any, rutaId: any) {
-    console.log('repeat: ', id, rutaId);
     this.dataObJdeleteDriver.api_key_admin = environment.apiKeyAdmin;
     this.dataObJdeleteDriver.transportista_id = id;
     this.dataObJdeleteDriver.ruta_id = rutaId;

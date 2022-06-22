@@ -58,7 +58,6 @@ export class CalificacionesComponent implements OnInit {
       (result) => {
         if (result.resultado == true) {
           this.responseStudents = result.objeto;
-          console.log(this.responseStudents);
         } else {
           this.showAlert(result.mensaje, 'Error');
         }
@@ -81,12 +80,11 @@ export class CalificacionesComponent implements OnInit {
     this.dataObjGetCalificaciones.usuario_id = localStorage.getItem(
       'usuario_id'
     );
-    console.log('filtro de busqueda', this.dataObjGetCalificaciones);
+
     this.adminService.getNotas(this.dataObjGetCalificaciones).subscribe(
       (result) => {
         if (result.resultado) {
           this.responseNotas = result.calificaciones;
-          console.log('notas finales: ', this.responseNotas);
         }
       },
       (error) => {

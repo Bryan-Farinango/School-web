@@ -51,6 +51,34 @@
                 >Rechazar</a
               >
             </div>
+            <form
+              *ngIf="motivoRechazo"
+              class="form-login"
+              [formGroup]="editFormMotivo"
+              (ngSubmit)="onUpdate(f, student.estudiante_id)"
+              #f="ngForm"
+            >
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Motivo Rechazo</label
+                >
+                <input
+                  placeholder="Motivo"
+                  maxlength="90"
+                  type="text"
+                  formControlName="motivo"
+                  class="form-control"
+                />
+                <br />
+                <div class="widget-49-meeting-action">
+                  <a
+                    class="btn btn-sm btn-flash-border-primary"
+                    (click)="confirmarRechazo(student.estudiante_id)"
+                    >Confirmar</a
+                  >
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

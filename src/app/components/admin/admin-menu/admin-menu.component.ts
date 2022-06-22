@@ -30,7 +30,6 @@ export class AdminMenuComponent implements OnInit {
       (result) => {
         if (result.resultado == true) {
           this.responseInfo = result.objeto;
-          console.log(this.responseInfo);
         } else {
         }
       },

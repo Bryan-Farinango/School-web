@@ -266,6 +266,13 @@
           <span>{{ option.nombres }}</span> <br />
           <span>{{ option.apellidos }}</span> <br />
           <span style="font-weight: bold">{{ option.nombre_grado }}</span>
+          <br />
+          <br />
+          <span style="font-weight: bold" *ngIf="option.estado == 2"
+            >Motivo rechazo:</span
+          >
+          <br />
+          <span *ngIf="option.estado == 2">{{ option.motivo }}</span> <br />
           <div class="mt-5">
             <div class="progress">
               <div

@@ -133,8 +133,6 @@ export class StudentsTeacherComponent implements OnInit {
             this.responseMaterias.push(myObject.materias);
           });
           */
-
-          console.log(this.responseStudents);
         }
       },
       (error) => {
@@ -183,7 +181,6 @@ export class StudentsTeacherComponent implements OnInit {
         (result) => {
           if (result.resultado == true) {
             this.responseMaterias = result.materias;
-            console.log('materias', this.responseMaterias);
           }
         },
         (error) => {

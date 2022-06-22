@@ -38,7 +38,6 @@ export class AdminAccountGuard implements CanActivate {
       .getUserInfo(this.dataObjGetUserInfo)
       .subscribe(
         (result) => {
-          console.log('datos del usuario a loguearse desde guard', result);
           if (result.resultado == true) {
             this.responseInfo = result.objeto;
             if (this.responseInfo.rol == 'Padre') {
@@ -57,7 +56,7 @@ export class AdminAccountGuard implements CanActivate {
           console.log(error);
         }
       );
-    console.log('constante await  ', validationUser);
+
     return this.navigate;
   }
 }

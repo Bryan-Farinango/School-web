@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AdminApiService } from 'src/app/services/admin-api.service';
 import { environment } from 'src/environments/environment';
@@ -10,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminStudentsComponent implements OnInit {
   public responseStudents: any;
+  public motivoRechazo: boolean;
   dataObjGetSolicitudes = {
     api_key_admin: '',
   };
@@ -17,11 +19,17 @@ export class AdminStudentsComponent implements OnInit {
   dataObjAprobar = {
     api_key_admin: '',
     estudiante_id: '',
+    motivo: '',
   };
+  editFormMotivo = new FormGroup({
+    motivo: new FormControl(''),
+  });
   constructor(
     private adminService: AdminApiService,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.motivoRechazo = false;
+  }
 
   ngOnInit(): void {
     this.getStudents();
@@ -51,7 +59,6 @@ export class AdminStudentsComponent implements OnInit {
         (result) => {
           if (result.resultado == true) {
             this.responseStudents = result.solicitudes;
-            console.log(this.responseStudents);
           } else {
             this.showAlert(result.mensaje, 'Error');
           }
@@ -81,8 +88,15 @@ export class AdminStudentsComponent implements OnInit {
   }
 
   rechazar(idEstudiante: any) {
+    this.motivoRechazo = !this.motivoRechazo;
+  }
+
+  confirmarRechazo(idEstudiante: any) {
+    const { motivo } = this.editFormMotivo.value;
     this.dataObjAprobar.api_key_admin = environment.apiKeyAdmin;
     this.dataObjAprobar.estudiante_id = idEstudiante;
+    this.dataObjAprobar.motivo = motivo;
+
     this.adminService.rechazarStudent(this.dataObjAprobar).subscribe(
       (result) => {
         if (result.resultado == true) {
@@ -96,5 +110,22 @@ export class AdminStudentsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onUpdate(form: any, id: any) {
+    if (form.invalid) {
+      this.showAlert('Datos incorrectos', 'Error');
+      return;
+    }
+  }
+
+  keyPressOnlyText(event: any): boolean {
+    const field = String.fromCharCode(event.keyCode);
+    if (/[a-zA-ZñÑÀ-ÿ`-]/.test(field)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
   }
 }
